@@ -1,20 +1,22 @@
-local L0_0, L1_1
-L0_0 = 0
-AnimationStep = L0_0
-function L0_0(A0_2)
-  local L1_3
-  L1_3 = GetPropertyString
-  L1_3 = L1_3(A0_2, "Sequence Names", AnimationStep)
-  if L1_3 == nil then
+-- Fully reworked & explained
+
+-- set variables
+local AnimationStep
+AnimationStep = 0
+
+-- test animation steps
+function test_animation_advance(var1)
+  local invar1
+  invar1 = GetPropertyString(var1, "Sequence Names", AnimationStep)
+  if invar1 == nil then
     AnimationStep = 0
-    AnimGBReset(A0_2)
-    AnimGBSequence(A0_2, 0)
+    AnimGBReset(var1)
+    AnimGBSequence(var1, 0)
     Bark(nil, "Restarting from Animation Index 0")
   else
-    AnimGBReset(A0_2)
-    AnimGBSequence(A0_2, L1_3)
-    Bark(nil, "Animation Index " .. AnimationStep .. L1_3)
+    AnimGBReset(var1)
+    AnimGBSequence(var1, invar1)
+    Bark(nil, "Animation Index " .. AnimationStep .. invar1)
     AnimationStep = AnimationStep + 1
   end
 end
-test_animation_advance = L0_0

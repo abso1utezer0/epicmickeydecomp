@@ -1,5 +1,7 @@
-local L1_0
-function L1_0()
+-- Fully reworked and explained
+
+-- Setup intro for Building Standards
+function EnemyIntro()
   StartFadeOut(0.8)
   RestrictCutSceneInput()
   wait(0.9)
@@ -15,4 +17,3 @@ function L1_0()
   UnrestrictCutSceneInput()
   UnpauseAllAI()
 end
-EnemyIntro = L1_0
