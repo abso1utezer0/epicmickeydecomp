@@ -1,117 +1,113 @@
+
+
 local L0_0, L1_1
-L0_0 = {}
-Pump_Machine1 = L0_0
-L0_0 = {}
-Pump_Machine2 = L0_0
-L0_0 = {}
-Pump_Machine3 = L0_0
-L0_0 = {}
-Pump_Machine4 = L0_0
-L0_0 = 0
-Pump_MachineArray_BUSY = L0_0
-L0_0 = "none"
-Pump_LastMachineUsed = L0_0
-L0_0 = 0
-Pump_LastUsedStatus = L0_0
-L0_0 = false
-Pump_FirstTimeUsed = L0_0
-function L0_0(A0_2, A1_3, A2_4, A3_5)
-  local L4_6, L5_7, L6_8, L7_9
-  L4_6 = Pump_MachineArray_BUSY
-  if L4_6 == 0 then
-    L4_6 = 1
-    Pump_MachineArray_BUSY = L4_6
-    L4_6 = Pump_Machine4
-    if A1_3 == "M1" then
-      L4_6 = Pump_Machine1
-    elseif A1_3 == "M2" then
-      L4_6 = Pump_Machine2
-    elseif A1_3 == "M3" then
-      L4_6 = Pump_Machine3
+
+Pump_Machine1 = {}
+Pump_Machine2 = {}
+Pump_Machine3 = {}
+Pump_Machine4 = {}
+Pump_MachineArray_BUSY = 0
+Pump_LastMachineUsed = "none"
+Pump_LastUsedStatus = 0
+Pump_FirstTimeUsed = false
+
+function TL_Pump_MachineArray(var1, var2, var3, var4)
+  local invar1, invar2, invar3, invar4
+
+  if Pump_MachineArray_BUSY == 0 then
+    invar1 = 1
+    Pump_MachineArray_BUSY = invar1
+    invar1 = Pump_Machine4
+    if var2 == "M1" then
+      invar1 = Pump_Machine1
+    elseif var2 == "M2" then
+      invar1 = Pump_Machine2
+    elseif var2 == "M3" then
+      invar1 = Pump_Machine3
     end
-    L5_7 = Pump_LastMachineUsed
-    if L5_7 == A1_3 then
+    invar2 = Pump_LastMachineUsed
+    if invar2 == var2 then
     else
-      L5_7 = Pump_FirstTimeUsed
-      if L5_7 == false then
-        L5_7 = true
-        Pump_FirstTimeUsed = L5_7
+      invar2 = Pump_FirstTimeUsed
+      if invar2 == false then
+        invar2 = true
+        Pump_FirstTimeUsed = invar2
       else
-        L5_7 = Pump_Machine4
-        L6_8 = GetGlobal
-        L6_8 = L6_8(L7_9)
-        if L7_9 == "M1" then
-          L5_7 = Pump_Machine1
-          L6_8 = L7_9
-        elseif L7_9 == "M2" then
-          L5_7 = Pump_Machine2
-          L6_8 = L7_9
-        elseif L7_9 == "M3" then
-          L5_7 = Pump_Machine3
-          L6_8 = L7_9
+        invar2 = Pump_Machine4
+        invar3 = GetGlobal
+        invar3 = invar3(invar4)
+        if invar4 == "M1" then
+          invar2 = Pump_Machine1
+          invar3 = invar4
+        elseif invar4 == "M2" then
+          invar2 = Pump_Machine2
+          invar3 = invar4
+        elseif invar4 == "M3" then
+          invar2 = Pump_Machine3
+          invar3 = invar4
         end
-        if L6_8 > 0 then
+        if invar3 > 0 then
         else
-          L7_9(GetPlayer(), "NO FIRE", 2)
-          L5_7 = L7_9
-          Pump_TwoInMotion = L7_9
-          Pump_InMotion = L7_9
-          Pump_ResetMotion = L7_9
-          Pump_ResetAll = L7_9
-          L7_9(SetPropertyFloat, "SKs_" .. A1_3, "BranchPathChance", 1)
-          if L7_9 == 0 then
-          elseif L7_9 > -3 then
-            if L7_9 == "Up" then
-              L7_9(A1_3 .. "_Paint")
+          invar4(GetPlayer(), "NO FIRE", 2)
+          invar2 = invar4
+          Pump_TwoInMotion = invar4
+          Pump_InMotion = invar4
+          Pump_ResetMotion = invar4
+          Pump_ResetAll = invar4
+          invar4(SetPropertyFloat, "SKs_" .. var2, "BranchPathChance", 1)
+          if invar4 == 0 then
+          elseif invar4 > -3 then
+            if invar4 == "Up" then
+              invar4(var2 .. "_Paint")
             end
-            L7_9(A1_3 .. "_Paint", 3)
-            Pump_ResetMotion = L7_9
-          elseif L7_9 < 3 then
-            if L7_9 == "Down" then
-              L7_9(A1_3 .. "_Thinner")
+            invar4(var2 .. "_Paint", 3)
+            Pump_ResetMotion = invar4
+          elseif invar4 < 3 then
+            if invar4 == "Down" then
+              invar4(var2 .. "_Thinner")
             end
-            L7_9(A1_3 .. "_Thinner", 3)
-            Pump_ResetMotion = L7_9
+            invar4(var2 .. "_Thinner", 3)
+            Pump_ResetMotion = invar4
           end
-          Pump_PaintDirection = L7_9
-          Pump_ThinnerDirection = L7_9
+          Pump_PaintDirection = invar4
+          Pump_ThinnerDirection = invar4
         end
       end
     end
-    Pump_LastMachineUsed = A1_3
-    L5_7 = 0
-    L6_8 = false
-    if L7_9 > 2 then
+    Pump_LastMachineUsed = var2
+    invar2 = 0
+    invar3 = false
+    if invar4 > 2 then
       for _FORV_10_ = 1, 3 do
-        if L4_6[_FORV_10_] == "Paint" then
-          L5_7 = L5_7 + 1
-        elseif L4_6[_FORV_10_] == "Thinner" then
-          L5_7 = L5_7 - 1
+        if invar1[_FORV_10_] == "Paint" then
+          invar2 = invar2 + 1
+        elseif invar1[_FORV_10_] == "Thinner" then
+          invar2 = invar2 - 1
         end
       end
-      L7_9(L4_6)
-      if L5_7 == 3 then
-      elseif L5_7 == -3 then
-      elseif A2_4 == "Paint" then
-        L4_6[3] = A2_4
+      invar4(invar1)
+      if invar2 == 3 then
+      elseif invar2 == -3 then
+      elseif var3 == "Paint" then
+        invar1[3] = var3
       else
-        L4_6[1] = A2_4
+        invar1[1] = var3
       end
-      L6_8 = true
+      invar3 = true
     else
-      L7_9(L4_6, A2_4)
+      invar4(invar1, var3)
     end
-    Pump_LastUsedStatus = L5_7
-    if L5_7 == -3 then
-    elseif L5_7 == 3 then
+    Pump_LastUsedStatus = invar2
+    if invar2 == -3 then
+    elseif invar2 == 3 then
     else
-      if A2_4 == "Thinner" then
+      if var3 == "Thinner" then
       end
-      if L6_8 == true then
+      if invar3 == true then
         Pump_TwoInMotion = true
         if Pump_PaintDirection == "Up" then
-          Reverse(A1_3 .. "_" .. L7_9)
-          if A2_4 == "Paint" then
+          Reverse(var2 .. "_" .. invar4)
+          if var3 == "Paint" then
             Pump_PaintDirection = "Up"
             Pump_ThinnerDirection = "Down"
           else
@@ -119,35 +115,30 @@ function L0_0(A0_2, A1_3, A2_4, A3_5)
             Pump_ThinnerDirection = "Up"
           end
         end
-        SetSpeed(A1_3 .. "_" .. L7_9, 3)
+        SetSpeed(var2 .. "_" .. invar4, 3)
       end
       if Pump_ThinnerDirection == "Down" then
-        Reverse(A1_3 .. "_" .. A2_4)
+        Reverse(var2 .. "_" .. var3)
       end
-      SetSpeed(A1_3 .. "_" .. A2_4, 3)
+      SetSpeed(var2 .. "_" .. var3, 3)
       wait(0.1)
       Pump_InMotion = 1
     end
-    L7_9(1.5)
-    Pump_MachineArray_BUSY = L7_9
+    invar4(1.5)
+    Pump_MachineArray_BUSY = invar4
   end
 end
-TL_Pump_MachineArray = L0_0
-L0_0 = "Up"
-Pump_PaintDirection = L0_0
-L0_0 = "Up"
-Pump_ThinnerDirection = L0_0
-L0_0 = false
-Pump_TwoInMotion = L0_0
-L0_0 = 0
-Pump_InMotion = L0_0
-L0_0 = 0
-Pump_ResetMotion = L0_0
-L0_0 = false
-Pump_ResetAll = L0_0
-function L0_0(A0_10)
+
+Pump_PaintDirection = "Up"
+Pump_ThinnerDirection = "Up"
+Pump_TwoInMotion = false
+Pump_InMotion = 0
+Pump_ResetMotion = 0
+Pump_ResetAll = false
+
+function TL_Pump_StopMotion(var1)
   if Pump_ResetAll == false and Pump_InMotion == 1 then
-    SetSpeed(A0_10, 0)
+    SetSpeed(var1, 0)
     if Pump_TwoInMotion == true then
       Pump_TwoInMotion = false
     else
@@ -155,10 +146,10 @@ function L0_0(A0_10)
     end
   end
 end
-TL_Pump_StopMotion = L0_0
-function L0_0(A0_11)
+
+function TL_Pump_ResetFunction(var1)
   if Pump_ResetAll == true then
-    SetSpeed(A0_11, 0)
+    SetSpeed(var1, 0)
     ForEachEntityInGroup(SetPropertyFloat, "SKs_" .. Machine, "BranchPathChance", 0)
     if Pump_ResetMotion == 1 then
       Pump_ResetAll = false
@@ -168,8 +159,8 @@ function L0_0(A0_11)
     end
   end
 end
-TL_Pump_ResetFunction = L0_0
-function L0_0(A0_12, A1_13, A2_14, A3_15)
+
+function TL_Pump_FilledFunction(A0_12, A1_13, A2_14, A3_15)
   local L4_16, L5_17, L6_18, L7_19
   L7_19 = "_Paint"
   L4_16(L5_17)
@@ -208,8 +199,7 @@ function L0_0(A0_12, A1_13, A2_14, A3_15)
   Pump_TwoInMotion = L4_16
   Pump_InMotion = L4_16
 end
-TL_Pump_FilledFunction = L0_0
-function L0_0()
+
+function TL_Restore_RocketRide1()
   local L0_20, L1_21
 end
-TL_Restore_RocketRide1 = L0_0

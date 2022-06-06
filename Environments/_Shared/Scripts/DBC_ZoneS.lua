@@ -1,39 +1,24 @@
-local L0_0, L1_1
-L0_0 = 8
-DBC_ZoneS_WaveOneEnemies = L0_0
-L0_0 = 5
-DBC_ZoneS_WaveTwoEnemies = L0_0
-L0_0 = 0
-DBC_ZoneS_NoFlythrough = L0_0
-L0_0 = 0
-DBC_ZoneS_DisableCheckpoint_Tent01 = L0_0
-L0_0 = 0
-DBC_ZoneS_DisableCheckpoint_Tent02 = L0_0
-L0_0 = 0
-DBC_ZoneS_DisableCheckpoint_Tent03 = L0_0
-L0_0 = 0
-DBC_ZoneS_DisableCheckpoint_Init = L0_0
-L0_0 = ""
-daisymov = L0_0
-L0_0 = ""
-donaldmov = L0_0
-L0_0 = ""
-goofymov = L0_0
-L0_0 = ""
-pete1mov = L0_0
-L0_0 = ""
-hookmov = L0_0
-L0_0 = ""
-clockmov = L0_0
-L0_0 = ""
-pete2mov = L0_0
-L0_0 = ""
-horacemov = L0_0
-L0_0 = ""
-pete3mov = L0_0
-L0_0 = false
-DBC_ZoneS_NoIntro = L0_0
-function L0_0()
+local L0_0, L1_10
+
+DBC_ZoneS_WaveOneEnemies = 8
+DBC_ZoneS_WaveTwoEnemies = 5
+DBC_ZoneS_NoFlythrough = 0
+DBC_ZoneS_DisableCheckpoint_Tent01 = 0
+DBC_ZoneS_DisableCheckpoint_Tent02 = 0
+DBC_ZoneS_DisableCheckpoint_Tent03 = 0
+DBC_ZoneS_DisableCheckpoint_Init = 0
+daisymov = ""
+donaldmov = ""
+goofymov = ""
+pete1mov = ""
+hookmov = ""
+clockmov = ""
+pete2mov = ""
+horacemov = ""
+pete3mov = ""
+DBC_ZoneS_NoIntro = false
+
+function DBC_ZoneS_Intro_Launcher()
   if DBC_ZoneS_NoIntro == false then
     SetGlobal("PlayerFirstTimeInZone", 1)
     GetPrefabData("DBC_ZoneS_Start").MapLoad_SetupPosition = "True"
@@ -42,29 +27,29 @@ function L0_0()
     FireThread(DBC_ZoneS_Intro_Launcher_FireThread)
   end
 end
-DBC_ZoneS_Intro_Launcher = L0_0
-function L0_0(A0_2)
-  AnimGBSequence(A0_2, "Open")
+
+function DBC_ZoneS_OpenDoor(var1)
+  AnimGBSequence(var1, "Open")
   AudioPostEventOn(GetPlayer(), "Play_sfx_IB_Door_Open")
 end
-DBC_ZoneS_OpenDoor = L0_0
-function L0_0(A0_3)
-  AnimGBSequence(A0_3, "Close")
+
+function DBC_ZoneS_CloseDoor(var1)
+  AnimGBSequence(var1, "Close")
 end
-DBC_ZoneS_CloseDoor = L0_0
-function L0_0(A0_4, A1_5)
+
+function DBC_ZoneS_TentacleKill(var1, var2)
   SetGlobal("DBC_ZoneS_TotalTent", GetGlobal("DBC_ZoneS_TotalTent") + 1)
-  SetGlobal(A1_5, 1)
+  SetGlobal(var2, 1)
   DBC_ZoneS_EndCutscene()
 end
-DBC_ZoneS_TentacleKill = L0_0
-function L0_0()
+
+function DBC_ZoneS_EndCutscene()
   if GetGlobal("DBC_LastHeartBoss") == 25 then
     DoEndGame()
   end
 end
-DBC_ZoneS_EndCutscene = L0_0
-function L0_0()
+
+function DBC_ZoneS_FirstCheckpoint()
   DBC_ZoneS_NoIntro = true
   DBC_ZoneS_NoFlythrough = 1
   SetGlobal("DBC_ZoneS_RoomFinished", 5)
@@ -75,12 +60,12 @@ function L0_0()
   FireThread(DBC_ZoneS_ManageSpawns, "dbc_zones_ai01.HeartRoom_Wave00Spawner 01", 2)
   FireThread(DBC_ZoneS_FirstCheckpoint_FireThread)
 end
-DBC_ZoneS_FirstCheckpoint = L0_0
-function L0_0()
+
+function DBC_ZoneS_SaveFirstCheckpoint()
   SaveCheckpoint(nil, "DBC_ZoneS_FirstCheckpoint", "CheckpointOneMarker")
 end
-DBC_ZoneS_SaveFirstCheckpoint = L0_0
-function L0_0()
+
+function DBC_ZoneS_CenterRoomSetup()
   DBC_ZoneS_NoFlythrough = 1
   if GetGlobal("DBC_ZoneS_RoomFinished") == 1 then
     SetGlobal("DBC_LastHeart02", 0)
@@ -142,8 +127,8 @@ function L0_0()
     end
   end
 end
-DBC_ZoneS_CenterRoomSetup = L0_0
-function L0_0(A0_6)
+
+function DBC_ZoneS_CenterRoomDone(var1)
   if DBC_ZoneS_WaveOneEnemies == 0 then
     FireUser1("WaveOneDoorCam")
     wait(2)
@@ -171,31 +156,31 @@ function L0_0(A0_6)
     TimerEnable("dbc_zones.Hall03_TentacleTimer 01")
   end
 end
-DBC_ZoneS_CenterRoomDone = L0_0
-function L0_0(A0_7, A1_8)
-  if GetCurrentTeam(A0_7) == 2 then
-    _G[A1_8] = _G[A1_8] + 1
+
+function DBC_ZoneS_EnemyTeamChange(var1, var2)
+  if GetCurrentTeam(var1) == 2 then
+    _G[var2] = _G[var2] + 1
     Print("Changing bad")
-    Print("enemy  Wave Number: " .. _G[A1_8])
-  elseif GetCurrentTeam(A0_7) == 3 then
-    _G[A1_8] = _G[A1_8] - 1
+    Print("enemy  Wave Number: " .. _G[var2])
+  elseif GetCurrentTeam(var1) == 3 then
+    _G[var2] = _G[var2] - 1
     Print("Changing good")
-    Print("friend  Wave Number: " .. _G[A1_8])
+    Print("friend  Wave Number: " .. _G[var2])
   end
   DBC_ZoneS_CenterRoomDone(nil)
 end
-DBC_ZoneS_EnemyTeamChange = L0_0
-function L0_0(A0_9, A1_10)
-  if GetCurrentTeam(A0_9) == 2 then
-    _G[A1_10] = _G[A1_10] - 1
-    Print("dead  Wave Number: " .. _G[A1_10])
+
+function DBC_ZoneS_EnemyDeath(var1, var2)
+  if GetCurrentTeam(var1) == 2 then
+    _G[var2] = _G[var2] - 1
+    Print("dead  Wave Number: " .. _G[var2])
   else
     Print("Friendly fire")
-    Print("dead  Wave Number: " .. _G[A1_10])
+    Print("dead  Wave Number: " .. _G[var2])
   end
   DBC_ZoneS_CenterRoomDone(nil)
 end
-DBC_ZoneS_EnemyDeath = L0_0
+
 function L0_0(A0_11, A1_12, A2_13)
   if GetGlobal("DBC_LastHeart01") == tonumber(A1_12) - 1 then
     Print(GetGlobal("DBC_LastHeart01"))

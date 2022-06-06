@@ -1,11 +1,12 @@
-local L0_0, L1_1
-function L0_0()
+-- Fully reworked
+
+function SetupFilmStrip()
   wait(0.5)
   UnrestrictCutSceneInput()
   TeleportToEntity(GetPlayer(), GetRelativePrefabEntity(target, ".ReplayStartPositionLeft"))
 end
-SetupFilmStrip = L0_0
-function L0_0()
+
+function LoadMeanStreetReplay()
   if GetGlobal("MS_MeanStreetProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/MeanStreet_V1.Level")
   end
@@ -25,4 +26,3 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/MeanStreet_V6.Level")
   end
 end
-LoadMeanStreetReplay = L0_0

@@ -11,7 +11,7 @@ function Teleport(var1)
   UnrestrictCutSceneInput()
 end
 
--- Restrice input and fade out/in
+-- Restrict input and fade out/in
 function Fade()
   RestrictCutSceneInput()
   StartFadeOut(1)
