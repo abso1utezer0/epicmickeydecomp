@@ -1,13 +1,13 @@
+-- Partially reworked
+
 local L0_0
-L0_0 = "Environments/Dungeons/Zones/DUN_Master.gsa"
-Demo_Lab = L0_0
-L0_0 = "Environments/Dungeons/Zones/DUN_ZoneA_Skybox.gsa"
-Demo_Lab_Skybox = L0_0
-L0_0 = "Environments/Tutorial/TUT_Islands.gsa"
-Demo_Tutorial = L0_0
-L0_0 = "Environments/HauntedMansion/GSA/HauntedMansion_ZoneE.gsa"
-Demo_Library = L0_0
-L0_0 = {
+
+Demo_Lab = "Environments/Dungeons/Zones/DUN_Master.gsa"
+Demo_Lab_Skybox = "Environments/Dungeons/Zones/DUN_ZoneA_Skybox.gsa"
+Demo_Tutorial = "Environments/Tutorial/TUT_Islands.gsa"
+Demo_Library = "Environments/HauntedMansion/GSA/HauntedMansion_ZoneE.gsa"
+
+Demo_streamGroups = {
   {Demo_Lab, Demo_Lab_Skybox},
   {
     Demo_Lab,
@@ -22,8 +22,8 @@ L0_0 = {
   },
   {Demo_Library, Demo_Tutorial}
 }
-Demo_streamGroups = L0_0
-function L0_0(A0_1, A1_2)
+
+function Demo_StreamZones(A0_1, A1_2)
   local L2_3, L3_4
   L2_3 = Demo_streamGroups
   L3_4 = tonumber
@@ -35,58 +35,58 @@ function L0_0(A0_1, A1_2)
   end
   StreamZones(A0_1, L3_4)
 end
-Demo_StreamZones = L0_0
-function L0_0()
+
+function Demo_ThinnerFall()
   local L0_5, L1_6
 end
-Demo_ThinnerFall = L0_0
-function L0_0(A0_7)
+
+function Demo_EnterGeefTunnelLeft(A0_7)
   if GetGlobal("Demo_PlayerInTunnel") == 0 then
     GrabCamera(A0_7, nil, CAMERA_LERP_TRANSITION, 0.7)
   end
 end
-Demo_EnterGeefTunnelLeft = L0_0
-function L0_0(A0_8)
+
+function Demo_EnterGeefTunnelRight(A0_8)
   if GetGlobal("Demo_PlayerInTunnel") == 0 then
     GrabCamera(A0_8, nil, CAMERA_LERP_TRANSITION, 1)
     wait(0.7)
     ReleaseCamera(CAMERA_LERP_TRANSITION, 1)
   end
 end
-Demo_EnterGeefTunnelRight = L0_0
-function L0_0(A0_9)
+
+function Demo_ExitGeefTunnelLeft(A0_9)
   if GetGlobal("Demo_PlayerInTunnel") == 1 then
     GrabCamera(A0_9, nil, CAMERA_LERP_TRANSITION, 1)
   end
 end
-Demo_ExitGeefTunnelLeft = L0_0
-function L0_0(A0_10, A1_11)
+
+function Demo_OnBalcony(A0_10, A1_11)
   GrabCamera(A0_10, A1_11, CAMERA_LERP_TRANSITION, 1.5)
 end
-Demo_OnBalcony = L0_0
-function L0_0(A0_12, A1_13)
+
+function Demo_InstantCam(A0_12, A1_13)
   GrabCamera(A0_12, A1_13, CAMERA_LERP_TRANSITION, 0)
 end
-Demo_InstantCam = L0_0
-function L0_0(A0_14, A1_15)
+
+function Demo_GrabCam(A0_14, A1_15)
   GrabCamera(A0_14, nil, CAMERA_LERP_TRANSITION, A1_15)
 end
-Demo_GrabCam = L0_0
-function L0_0()
+
+function Demo_OffBalcony()
   ReleaseCamera(CAMERA_LERP_TRANSITION, 1.5)
 end
-Demo_OffBalcony = L0_0
-function L0_0()
+
+function Demo_WestCameraOn()
   GrabCamera("dun_zonea_scripting_ai.WestCamera 01", nil, CAMERA_LERP_TRANSITION, 0.7)
 end
-Demo_WestCameraOn = L0_0
-function L0_0()
+
+function Demo_ReleaseCam()
   ReleaseCamera(CAMERA_LERP_TRANSITION, 0.7)
 end
-Demo_ReleaseCam = L0_0
-L0_0 = 0
-DemoLabBooksCaught = L0_0
-function L0_0(A0_16)
+
+DemoLabBooksCaught = 0
+
+function DemoLab_CatchBook(A0_16)
   DemoLabBooksCaught = DemoLabBooksCaught + 1
   if DemoLabBooksCaught == 2 then
     DialogBox(GetPlayer(), "The Scrapper is aligned with the destructive force of Thinner. He is powerful and dangerous- a product of directness and the pursuit of bettering himself at all turns.  He realizes that his needs are paramount and as such accumulates power quickly. His mastery of Thinner and thus destruction is unparalleled.")
@@ -95,8 +95,8 @@ function L0_0(A0_16)
   end
   DestroyEntity(A0_16)
 end
-DemoLab_CatchBook = L0_0
-function L0_0()
+
+function DemoLab_ColumnFall()
   GrabCamera("dun_zonea_scripting_ai.ColumnCamera 01", nil, CAMERA_LERP_TRANSITION, 0)
   wait(0.7)
   GrabCamera("dun_zonea_scripting_ai.ColumnCamera 02", nil, CAMERA_LERP_TRANSITION, 1)
@@ -111,10 +111,10 @@ function L0_0()
   ReleaseCamera(CAMERA_LERP_TRANSITION, 0.7)
   UnrestrictCutSceneInput()
 end
-DemoLab_ColumnFall = L0_0
-L0_0 = 0
-Demo_Gremlin = L0_0
-function L0_0()
+
+Demo_Gremlin = 0
+
+function Demo_GremlinKickoff()
   PauseMenuObjectives(GetPlayer(), [[
 Mad Doctor's lab: 
  Rescue Gremlin Gus and escape the lab.]])
@@ -133,8 +133,8 @@ Mad Doctor's lab:
   ReleaseCamera(CAMERA_LERP_TRANSITION, 1)
   UnrestrictCutSceneInput()
 end
-Demo_GremlinKickoff = L0_0
-function L0_0()
+
+function DemoLab_GusGreet()
   AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_AI_Misc)
   RestrictCutSceneInput()
   EnterCutscene("dun_zonea_scripting_ai.Gremlin_Gus 01")
@@ -155,59 +155,39 @@ function L0_0()
   AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Finished_Sequence)
   ObjectiveNew(GetPlayer(), "gremlin", 3)
 end
-DemoLab_GusGreet = L0_0
-L0_0 = 0
-GusSaved = L0_0
-L0_0 = 0
-TedSaved = L0_0
-L0_0 = 0
-GngSaved = L0_0
-function L0_0()
+
+GusSaved = 0
+TedSaved = 0
+GngSaved = 0
+Demo_Gremlin = 0
+
+function DemoLab_GusThank()
   local L0_17
-  L0_17 = AnimEvent
-  L0_17("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Finished_Sequence)
-  L0_17 = AnimVarInt
-  L0_17("dun_zonea_scripting_ai.Gremlin_Gus 01", VAR_AI_Misc, 0)
-  L0_17 = 1
-  GusSaved = L0_17
-  L0_17 = Demo_Gremlin
-  L0_17 = L0_17 + 1
-  Demo_Gremlin = L0_17
-  L0_17 = GrabCamera
-  L0_17("dun_zonea_scripting_ai.GusIntroCamera 05", "dun_zonea_scripting_ai.Gremlin_Gus 01", CAMERA_LERP_TRANSITION, 0)
-  L0_17 = MoveToEntity
-  L0_17(GetPlayer(), "dun_zonea_scripting_ai.GusConvoMarker 01")
-  L0_17 = wait
-  L0_17(0.7)
-  L0_17 = RestrictCutSceneInput
-  L0_17()
-  L0_17 = wait
-  L0_17(0.5)
-  L0_17 = GrabCamera
-  L0_17("dun_zonea_scripting_ai.GusIntroCamera 03", nil, CAMERA_LERP_TRANSITION, 1.5)
-  L0_17 = wait
-  L0_17(1.9)
-  L0_17 = EnterCutscene
-  L0_17("dun_zonea_scripting_ai.Gremlin_Gus 01")
-  L0_17 = AnimEvent
-  L0_17("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Finished_Sequence)
-  L0_17 = AnimEvent
-  L0_17("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Start_Talk)
-  L0_17 = Bark
-  L0_17(GetPlayer(), "Thank you! I'm Gus Gremlin. The Mad Doctor captured me like he almost got you!", 4, "Gus", "Gus:")
-  L0_17 = GrabCamera
-  L0_17("dun_zonea_scripting_ai.GusIntroCamera 02", nil, CAMERA_LERP_TRANSITION, 22.5)
-  L0_17 = wait
-  L0_17(4.1)
-  L0_17 = 0
+  AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Finished_Sequence)
+  AnimVarInt("dun_zonea_scripting_ai.Gremlin_Gus 01", VAR_AI_Misc, 0)
+  GusSaved = 1
+  Demo_Gremlin = Demo_Gremlin + 1
+  GrabCamera("dun_zonea_scripting_ai.GusIntroCamera 05", "dun_zonea_scripting_ai.Gremlin_Gus 01", CAMERA_LERP_TRANSITION, 0)
+  MoveToEntity(GetPlayer(), "dun_zonea_scripting_ai.GusConvoMarker 01")
+  wait(0.7)
+  RestrictCutSceneInput()
+  wait(0.5)
+  GrabCamera("dun_zonea_scripting_ai.GusIntroCamera 03", nil, CAMERA_LERP_TRANSITION, 1.5)
+  wait(1.9)
+  EnterCutscene("dun_zonea_scripting_ai.Gremlin_Gus 01")
+  AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Finished_Sequence)
+  AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Start_Talk)
+  Bark(GetPlayer(), "Thank you! I'm Gus Gremlin. The Mad Doctor captured me like he almost got you!", 4, "Gus", "Gus:")
+  GrabCamera("dun_zonea_scripting_ai.GusIntroCamera 02", nil, CAMERA_LERP_TRANSITION, 22.5)
+  wait(4.1)
   if TedSaved == 0 and GngSaved == 0 then
-    L0_17 = "Two other gremlins are caged in this lab."
+    GusSavedGremlinText = "Two other gremlins are caged in this lab."
   elseif TedSaved == 1 and GngSaved == 1 then
-    L0_17 = "Thanks for saving them!"
+    GusSavedGremlinText = "Thanks for saving them!"
   elseif TedSaved == 1 or GngSaved == 1 then
-    L0_17 = "Looks like you've found one of them already."
+    GusSavedGremlinText = "Looks like you've found one of them already."
   end
-  Bark(GetPlayer(), "My squad was trying to sabotage the Doctor's experiment. " .. L0_17, 6, "Gus", "Gus:")
+  Bark(GetPlayer(), "My squad was trying to sabotage the Doctor's experiment. " .. GusSavedGremlinText, 6, "Gus", "Gus:")
   wait(6.1)
   FaceEntity("dun_zonea_scripting_ai.Gremlin_Gus 01", GetPlayer())
   if TedSaved == 0 and GngSaved == 0 then
@@ -226,7 +206,7 @@ function L0_0()
     Demo_GusThankEnd()
   end
 end
-DemoLab_GusThank = L0_0
+
 function L0_0()
   AnimEvent("dun_zonea_scripting_ai.Gremlin_Gus 01", EVENT_Start_EmoteHappy)
   wait(1.8)

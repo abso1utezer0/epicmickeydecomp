@@ -1,5 +1,4 @@
--- Fully Reworked & explained
-local L0_0, L1_1
+-- Fully reworked & explained
 
 -- Leave to Mean Street
 function LeavingToMeanStreet()

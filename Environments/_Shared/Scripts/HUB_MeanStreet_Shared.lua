@@ -1,10 +1,11 @@
 local L0_0, L1_1
-function L0_0(A0_2)
-  GetPrefabData(A0_2).MapLoad_SetupPosition = "True"
-  OnMapLoad_ProjectorSetup(A0_2)
+
+function MS_Setup_Launcher(var1)
+  GetPrefabData(var1).MapLoad_SetupPosition = "True"
+  OnMapLoad_ProjectorSetup(var1)
 end
-MS_Setup_Launcher = L0_0
-function L0_0()
+
+function MS_CheckpointSave()
   local L0_3, L1_4
   L0_3 = "MSV1_AlwaysSetup"
   L1_4 = "ToonTownStartMarker"
@@ -31,7 +32,7 @@ function L0_0()
   SaveCheckpoint(GetPlayer(), L0_3, L1_4)
   Print("Mean Street checkpoint saved with parameters:" .. L0_3 .. " , " .. L1_4)
 end
-MS_CheckpointSave = L0_0
+
 function L0_0()
   Print("Picking Projector Exit, Position: " .. GetGlobal("HUB_startposition"))
   if GetGlobal("HUB_startposition") == 1 then

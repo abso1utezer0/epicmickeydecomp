@@ -1,6 +1,7 @@
-local L1_0
-function L1_0()
+-- Fully reworked & explained
+
+-- Fade out
+function Fade()
   StartFadeOut(1)
   StartFadeIn(1)
 end
-Fade = L1_0
