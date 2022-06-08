@@ -1,77 +1,74 @@
-local L0_0, L1_1
-L0_0 = 0
-DBC_1st_ZoneA_TimMachineState = L0_0
-L0_0 = 0
-DBC_1st_ZoneA_MortMachineState = L0_0
-L0_0 = 1
-DBC_ArmActive = L0_0
-L0_0 = "none"
-DBC_1st_ZoneA_CurrentMachine = L0_0
-L0_0 = 0
-DBC_1st_ZoneA_GusIntro_Played = L0_0
-function L0_0(A0_2, A1_3)
-  DisableComponent(A0_2, "Usable")
-  TeleportToEntity(A0_2, A1_3, true, true)
-  StartGremlinTeleportInFX(A0_2)
+-- Fully reworked
+
+DBC_1st_ZoneA_TimMachineState = 0
+DBC_1st_ZoneA_MortMachineState = 0
+DBC_ArmActive = 1
+DBC_1st_ZoneA_CurrentMachine = "none"
+DBC_1st_ZoneA_GusIntro_Played = 0
+
+function DBC_1st_ZoneA_TeleportGremlinToEntityRight(param1, param2)
+  DisableComponent(param1, "Usable")
+  TeleportToEntity(param1, param2, true, true)
+  StartGremlinTeleportInFX(param1)
   wait(0.66)
-  Unhide(A0_2)
-  EnterCutscene(A0_2, 5)
+  Unhide(param1)
+  EnterCutscene(param1, 5)
   wait(3)
-  EnableComponent(A0_2, "Usable")
-  if not IsInCutscene(A0_2) then
-    ExitCutscene(A0_2)
+  EnableComponent(param1, "Usable")
+  if not IsInCutscene(param1) then
+    ExitCutscene(param1)
   end
 end
-DBC_1st_ZoneA_TeleportGremlinToEntityRight = L0_0
-function L0_0(A0_4, A1_5)
-  DisableComponent(A0_4, "Usable")
-  TeleportToEntity(A0_4, A1_5, true, true)
-  StartGremlinTeleportInFX(A0_4)
+
+function DBC_1st_ZoneA_TeleportGremlinToEntityRightFirst(param1, param2)
+  DisableComponent(param1, "Usable")
+  TeleportToEntity(param1, param2, true, true)
+  StartGremlinTeleportInFX(param1)
   wait(0.66)
-  Unhide(A0_4)
-  EnterCutscene(A0_4, 11)
+  Unhide(param1)
+  EnterCutscene(param1, 11)
   wait(2)
-  Hide(A0_4)
-  EnableComponent(A0_4, "Usable")
-  if not IsInCutscene(A0_4) then
-    ExitCutscene(A0_4)
+  Hide(param1)
+  EnableComponent(param1, "Usable")
+  if not IsInCutscene(param1) then
+    ExitCutscene(param1)
   end
 end
-DBC_1st_ZoneA_TeleportGremlinToEntityRightFirst = L0_0
-function L0_0(A0_6, A1_7)
-  DisableComponent(A0_6, "Usable")
-  TeleportToEntity(A0_6, A1_7, true, true)
-  StartGremlinTeleportInFX(A0_6)
+
+function DBC_1st_ZoneA_TeleportGremlinToEntityLeft(param1, param2)
+  DisableComponent(param1, "Usable")
+  TeleportToEntity(param1, param2, true, true)
+  StartGremlinTeleportInFX(param1)
   wait(0.66)
-  Unhide(A0_6)
-  EnterCutscene(A0_6, 10)
+  Unhide(param1)
+  EnterCutscene(param1, 10)
   wait(3)
-  Hide(A0_6)
-  EnableComponent(A0_6, "Usable")
-  if not IsInCutscene(A0_6) then
-    ExitCutscene(A0_6)
+  Hide(param1)
+  EnableComponent(param1, "Usable")
+  if not IsInCutscene(param1) then
+    ExitCutscene(param1)
   end
 end
-DBC_1st_ZoneA_TeleportGremlinToEntityLeft = L0_0
-function L0_0(A0_8, A1_9)
-  DisableComponent(A0_8, "Usable")
-  EnterCutscene(A0_8, 6)
+
+function DBC_1st_ZoneA_TeleportGremlinToEntityTaunt(param1, param2)
+  DisableComponent(param1, "Usable")
+  EnterCutscene(param1, 6)
   wait(0.9)
-  Hide(A0_8)
-  TeleportToEntity(A0_8, A1_9, true, true)
-  StartGremlinTeleportInFX(A0_8)
+  Hide(param1)
+  TeleportToEntity(param1, param2, true, true)
+  StartGremlinTeleportInFX(param1)
   wait(0.66)
-  Unhide(A0_8)
-  EnterCutscene(A0_8, 10)
+  Unhide(param1)
+  EnterCutscene(param1, 10)
   wait(3)
-  Hide(A0_8)
-  EnableComponent(A0_8, "Usable")
-  if not IsInCutscene(A0_8) then
-    ExitCutscene(A0_8)
+  Hide(param1)
+  EnableComponent(param1, "Usable")
+  if not IsInCutscene(param1) then
+    ExitCutscene(param1)
   end
 end
-DBC_1st_ZoneA_TeleportGremlinToEntityTaunt = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_LoadCheckpoint()
   DisableGuardianSystem()
   PlayerSetDripsVisible(GetPlayer(), false)
   DestroyEntity("dbc_1st_zonea_dynamic.DBC_ZoneD_Break_04 01")
@@ -107,67 +104,51 @@ function L0_0()
   end
   ShowHud()
 end
-DBC_1st_ZoneA_LoadCheckpoint = L0_0
-function L0_0(A0_10)
-  local L1_11, L2_12, L3_13, L4_14, L5_15
-  L1_11 = SetPropertyFloat
-  L1_11(L2_12, L3_13, L4_14)
-  L1_11 = DBC_1st_ZoneA_SetArmIdle
-  L1_11(L2_12, L3_13)
-  L1_11 = SetPropertyEntity
-  L5_15 = L4_14()
-  L1_11(L2_12, L3_13, L4_14, L5_15, L4_14())
-  L1_11 = SetPropertyEntity
-  L5_15 = L4_14()
-  L1_11(L2_12, L3_13, L4_14, L5_15, L4_14())
-  L1_11 = SetPropertyEntity
-  L5_15 = L4_14()
-  L1_11(L2_12, L3_13, L4_14, L5_15, L4_14())
-  L1_11 = GetGlobal
-  L1_11 = L1_11(L2_12)
-  L1_11 = L1_11 + L2_12
-  if L1_11 == 2 then
-    L1_11 = SetRotatorMaxSpeed
-    L1_11(L2_12, L3_13)
-    L1_11 = SetRotatorMaxSpeed
-    L1_11(L2_12, L3_13)
-    L1_11 = SetPropertyEntity
-    L1_11(L2_12, L3_13, L4_14)
-    L1_11 = SetPropertyEntity
-    L1_11(L2_12, L3_13, L4_14)
+
+function DBC_1st_SetupArm(param1)
+
+  local var1, var2, var3, var4, var5
+  var5 = var4()
+  SetPropertyFloat(var2, var3, var4)
+  DBC_1st_ZoneA_SetArmIdle(var2, var3)
+  SetPropertyEntity(var2, var3, var4, var5, var4())
+  SetPropertyEntity(var2, var3, var4, var5, var4())
+  SetPropertyEntity1(var2, var3, var4, var5, var4())
+
+  if GetGlobal(var2) + var2 == 2 then
+    
+    SetRotatorMaxSpeed(var2, var3)
+    SetRotatorMaxSpeed(var2, var3)
+    SetPropertyEntity(var2, var3, var4)
+    SetPropertyEntity(var2, var3, var4)
+
   else
-    L1_11 = SetPropertyEntity
-    L5_15 = L4_14()
-    L1_11(L2_12, L3_13, L4_14, L5_15, L4_14())
-    L1_11 = SetPropertyEntity
-    L5_15 = L4_14()
-    L1_11(L2_12, L3_13, L4_14, L5_15, L4_14())
+
+    SetPropertyEntity(var2, var3, var4, var5, var4())
+    SetPropertyEntity(var2, var3, var4, var5, var4())
+
   end
-  L1_11 = SetRotatorMaxSpeed
-  L1_11(L2_12, L3_13)
-  L1_11 = SetRobotArmAttackTypeAngleInfo
-  L1_11(L2_12, L3_13, L4_14)
-  L1_11 = SetRobotArmAttackTypeAngleInfo
-  L1_11(L2_12, L3_13, L4_14)
-  L1_11 = SetRobotArmAttackTypeAngleInfo
-  L1_11(L2_12, L3_13, L4_14)
-  L1_11 = SetRobotArmAttackTypeAngleInfo
-  L1_11(L2_12, L3_13, L4_14)
-  L1_11 = SetRobotArmSpotlightEntity
-  L1_11(L2_12, L3_13)
-  L1_11 = 0
-  for L5_15 = 0, 6 do
-    SetRobotArmAttackTypeDelayInfo(A0_10, L5_15, 1.15)
+
+  SetRotatorMaxSpeed(var2, var3)
+  SetRobotArmAttackTypeAngleInfo(var2, var3, var4)
+  SetRobotArmAttackTypeAngleInfo(var2, var3, var4)
+  SetRobotArmAttackTypeAngleInfo(var2, var3, var4)
+  SetRobotArmAttackTypeAngleInfo(var2, var3, var4)
+  SetRobotArmSpotlightEntity(var2, var3)
+  var1 = 0
+
+  for var5 = 0, 6 do
+    SetRobotArmAttackTypeDelayInfo(param1, var5, 1.15)
   end
-  for L5_15 = 10, 11 do
-    SetRobotArmAttackTypeDelayInfo(A0_10, L5_15, 1.15)
+  for var5 = 10, 11 do
+    SetRobotArmAttackTypeDelayInfo(param1, var5, 1.15)
   end
-  for L5_15 = 7, 9 do
-    SetRobotArmAttackTypeDelayInfo(A0_10, L5_15, 0)
+  for var5 = 7, 9 do
+    SetRobotArmAttackTypeDelayInfo(param1, var5, 0)
   end
 end
-DBC_1st_SetupArm = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene()
   HideReticleOnly()
   if GetGlobal("DBC_1st_ZoneA_IntroCutscene") == 1 then
     return
@@ -203,36 +184,36 @@ function L0_0()
   AnimGBReset("dbc_1st_igc.DBC_lab_intro_cam 01")
   AnimGBSequence("dbc_1st_igc.DBC_lab_intro_cam 01", "dbc_lab_intro_cam")
 end
-DBC_1st_ZoneA_cutscene = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_leftSideStart()
   FireThread(DBC_1st_ZoneA_TeleportGremlinToEntityLeft, "dbc_1st_gus_tut.Gremlin_Gus 01", "dbc_1st_gus_tut.GusPosition 03")
   wait(1.2)
   FireSequence("dbc_1st_gus_tut.Gremlin_Gus 01", "DBC_1st_ZoneA_LeftSideWarning")
 end
-DBC_1st_ZoneA_cutscene_leftSideStart = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_leftSideSmash()
   AnimGBSequence("dbc_1st_zonea_dynamic.DBC_ZoneD_Break_01 01", "Break", true)
   ShakeCamera_Default("camera")
   StartEmitters("dbc_1st_igc.PipeParticle")
   SetSplineFollowerInitialSpeed("dbc_1st_zonea_dynamic.DBC_1st_ZoneA_Thinner_Lab 01", 0.5)
 end
-DBC_1st_ZoneA_cutscene_leftSideSmash = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_rightSideStartTeleport1()
   FireThread(DBC_1st_ZoneA_TeleportGremlinToEntityRightFirst, "dbc_1st_gus_tut.Gremlin_Gus 01", "dbc_1st_gus_tut.GusPosition 07")
 end
-DBC_1st_ZoneA_cutscene_rightSideStartTeleport1 = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_rightSideStartTeleport2()
   FireThread(DBC_1st_ZoneA_TeleportGremlinToEntityRight, "dbc_1st_gus_tut.Gremlin_Gus 01", "dbc_1st_gus_tut.GusPosition 02")
 end
-DBC_1st_ZoneA_cutscene_rightSideStartTeleport2 = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_rightSideSmash()
   AnimGBSequence("dbc_1st_zonea_dynamic.DBC_ZoneD_Break_04 01", "Break")
   ShakeCamera_Default("camera")
   AnimEvent(GetPlayer(), EVENT_Finished_Sequence)
   SetStayInCombatIdle(GetPlayer(), true)
 end
-DBC_1st_ZoneA_cutscene_rightSideSmash = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_end()
   EnterCutscene(GetPlayer(), 23)
   wait(3.3333)
   AnimEvent(GetPlayer(), EVENT_Finished_Sequence)
@@ -249,8 +230,8 @@ function L0_0()
   UnrestrictCutSceneInput()
   FireThread(DBC_1st_ZoneA_MickeyReleaseCamera)
 end
-DBC_1st_ZoneA_cutscene_end = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_cutscene_restoreArm()
   SetRotatorMaxSpeed("dbc_1st_zonea_dynamic.robotArm_eye 01", 6000)
   SetRotatorMaxSpeed("dbc_1st_zonea_dynamic.robotArm_eyePivot 01", 6000)
   SetPropertyEntity("dbc_1st_zonea_dynamic.robotArm_eye 01", "RotateToEntity", GetPlayer())
@@ -259,81 +240,74 @@ function L0_0()
   DBC_1st_ZoneA_SetArmIdle(nil, 1)
   FireSequence("dbc_1st_gus_tut.Gremlin_Gus 01", "DBC_1st_Gus_Introduction")
 end
-DBC_1st_ZoneA_cutscene_restoreArm = L0_0
-function L0_0()
-  local L0_16
-  L0_16 = GetPosition
-  L0_16 = L0_16(GetPlayer())
-  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), L0_16) do
+
+function DBC_1st_ZoneA_MickeyReleaseCamera()
+  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), GetPosition(GetPlayer())) do
     wait(0.5)
     Print("************************************* - Prefab_ProjectorMickeyMove - wait 0.5")
   end
   ReleaseCamera(CAMERA_EASING_TRANSITION, 0.5)
 end
-DBC_1st_ZoneA_MickeyReleaseCamera = L0_0
-function L0_0(A0_17, A1_18)
-  local L2_19, L3_20
-  L2_19 = A0_17.x
-  L3_20 = A1_18.x
-  L2_19 = L2_19 == L3_20 and L2_19 == L3_20
-  return L2_19
+
+function DBC_1st_ZoneA_MickeyPosition(param1, param2)
+  local var1, var2
+  var1 = param1.x
+  var2 = param2.x
+  var1 = var1 == var2 and var1 == var2
+  return var1
 end
-DBC_1st_ZoneA_MickeyPosition = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_startCam()
   StartFadeOut(0)
   StartFadeIn(0.5)
   ShowHud()
   SetCameraAttributes("dbc_1st_zonea_offsetcam.Marker(CameraOverride) 05")
 end
-DBC_1st_ZoneA_startCam = L0_0
-function L0_0(A0_21, A1_22)
-  local L2_23
-  L2_23 = "dbc_1st_zonea_dynamic.Robot_Arm"
+
+function DBC_1st_ZoneA_EnterArmZone(param1, param2)
   if DBC_ArmActive == 1 then
-    SetRobotArmAttackTypeEnabled(L2_23, A1_22, true)
+    SetRobotArmAttackTypeEnabled("dbc_1st_zonea_dynamic.Robot_Arm", param2, true)
   end
 end
-DBC_1st_ZoneA_EnterArmZone = L0_0
-function L0_0(A0_24, A1_25)
-  local L2_26
-  L2_26 = "dbc_1st_zonea_dynamic.Robot_Arm"
-  SetRobotArmAttackTypeEnabled(L2_26, A1_25, false)
+
+function DBC_1st_ZoneA_ExitArmZone(param1, param2)
+  SetRobotArmAttackTypeEnabled("dbc_1st_zonea_dynamic.Robot_Arm", param2, false)
 end
-DBC_1st_ZoneA_ExitArmZone = L0_0
-function L0_0(A0_27, A1_28)
-  if A1_28 == "purple" then
-    RequestRobotArmSmash(A0_27, -48, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_05 01", 2)
-  elseif A1_28 == "green" then
-    RequestRobotArmSmash(A0_27, -109, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_04 01", 1)
-  elseif A1_28 == "blue" then
-    RequestRobotArmSmash(A0_27, 164, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_02 01", 0)
-  elseif A1_28 == "yellow" then
-    RequestRobotArmSmash(A0_27, 0, "nil", 3)
+
+function DBC_1st_ArmSmashColor(param1, param2)
+  if param2 == "purple" then
+    RequestRobotArmSmash(param1, -48, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_05 01", 2)
+  elseif param2 == "green" then
+    RequestRobotArmSmash(param1, -109, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_04 01", 1)
+  elseif param2 == "blue" then
+    RequestRobotArmSmash(param1, 164, "dbc_1st_zonea_dynamic.DBC_ZoneD_Break_02 01", 0)
+  elseif param2 == "yellow" then
+    RequestRobotArmSmash(param1, 0, "nil", 3)
   end
 end
-DBC_1st_ArmSmashColor = L0_0
-function L0_0(A0_29, A1_30)
-  if A1_30 == "Left" then
+
+function DBC_1st_ZoneA_DontFreeGremlinsCall(param1, param2)
+  if param2 == "Left" then
     DBC_1st_ZoneA_DontFreeGremlins("dbc_1st_zonea_dynamic.DBC_ZoneA_ArmMachineLeft", "DBC_1st_ZoneA_TimMachine", "TimBreakMachineSpawner", "DBC_1st_ZoneA_TimMachineState", "LeftMachineParticle2")
-  elseif A1_30 == "Right" then
+  elseif param2 == "Right" then
     DBC_1st_ZoneA_DontFreeGremlins("dbc_1st_zonea_dynamic.DBC_ZoneA_ArmMachineRight", "DBC_1st_ZoneA_MortMachine", "MortBreakMachineSpawner", "DBC_1st_ZoneA_MortMachineState", "RightMachineParticle2")
   end
 end
-DBC_1st_ZoneA_DontFreeGremlinsCall = L0_0
-function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
-  if _G[A3_34] == 0 then
-    _G[A3_34] = 1
-    AnimGBSequence(A0_31, "1stStage")
-    AudioPostEventOn(A0_31, "Play_sfx_DBC_Lab_Arm_Machine_On")
+
+function DBC_1st_ZoneA_DontFreeGremlins(param1, param2, param3, param4, param5)
+  if _G[param4] == 0 then
+    _G[param4] = 1
+    AnimGBSequence(param1, "1stStage")
+    AudioPostEventOn(param1, "Play_sfx_DBC_Lab_Arm_Machine_On")
     FireSequence("dbc_1st_gus_tut.Gremlin_Gus 01", "DBC_1st_ZoneA_Machine2ndWarning")
-  elseif _G[A3_34] == 1 then
-    _G[A3_34] = 2
-    ForEachEntityInGroup(StartEmitters, A4_35)
-    SetGlobal(A1_32, 1)
+  elseif _G[param4] == 1 then
+    _G[param4] = 2
+    ForEachEntityInGroup(StartEmitters, param5)
+    SetGlobal(param2, 1)
     if GetGlobal("DBC_1st_ZoneA_TimMachine") + GetGlobal("DBC_1st_ZoneA_MortMachine") == 1 then
       RestrictCutSceneInput()
-      AnimGBSequence(A0_31, "2ndStage")
-      AudioPostEventOn(A0_31, "Play_sfx_DBC_Lab_Arm_Machine_Damaged")
+      AnimGBSequence(param1, "2ndStage")
+      AudioPostEventOn(param1, "Play_sfx_DBC_Lab_Arm_Machine_Damaged")
       wait(1)
       StartFadeOut(0.8)
       wait(0.8)
@@ -342,12 +316,12 @@ function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
       Disable("dbc_1st_zonea_offsetcam.TriggerRotate 01")
       SetPropertyFloat("dbc_1st_gus_tut.Gremlin_Gus 01", "UsableRadius", 0)
       StartFadeInNoHUD(0.8)
-      if A3_34 == "DBC_1st_ZoneA_TimMachineState" then
+      if param4 == "DBC_1st_ZoneA_TimMachineState" then
         TeleportToEntity(GetPlayer(), "dbc_1st_igc.MickeySpinMarker 02")
         GrabCameraNif("dbc_1st_igc.DBC_visit1_lab_robotArm_electrocutionCamera_left 01", nil, CAMERA_LERP_TRANSITION, 0)
         AnimGBReset("dbc_1st_igc.DBC_visit1_lab_robotArm_electrocutionCamera_left 01")
         AnimGBSequence("dbc_1st_igc.DBC_visit1_lab_robotArm_electrocutionCamera_left 01", "RobotArmTransCam")
-      elseif A3_34 == "DBC_1st_ZoneA_MortMachineState" then
+      elseif param4 == "DBC_1st_ZoneA_MortMachineState" then
         TeleportToEntity(GetPlayer(), "dbc_1st_zonea_dynamic.MickeySpinMarker 01")
         GrabCameraNif("dbc_1st_igc.DBC_visit1_lab_robotArm_electrocutionCamera_right 01", nil, CAMERA_LERP_TRANSITION, 0)
         AnimGBReset("dbc_1st_igc.DBC_visit1_lab_robotArm_electrocutionCamera_right 01")
@@ -357,7 +331,7 @@ function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
       AudioPostEventOn(GetPlayer(), "Play_sfx_DBC_Evnt_RobotArm_Damage")
       RequestRobotArmElectrocute("dbc_1st_zonea_dynamic.Robot_Arm", 0, false)
       wait(1)
-      AnimGBSequence(A0_31, "3rdStage")
+      AnimGBSequence(param1, "3rdStage")
       wait(7.667)
       StartFadeOut(0.8)
       wait(0.8)
@@ -372,8 +346,8 @@ function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
       RestrictCutSceneInput()
       DestroyEntity("dbc_1st_zonea_static.DBC_ZoneA_SafetyRail 01")
       ForEachEntityInGroup(Disable, "dbc_1st_zonea_dynamic.RobotArmDamageVolumes")
-      AnimGBSequence(A0_31, "2ndStage")
-      if A3_34 == "DBC_1st_ZoneA_TimMachineState" then
+      AnimGBSequence(param1, "2ndStage")
+      if param4 == "DBC_1st_ZoneA_TimMachineState" then
         DestroyEntity("dbc_1st_gus_tut.ExitDoorTrigger 01")
       end
       wait(1)
@@ -384,20 +358,20 @@ function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
       Disable("dbc_1st_zonea_offsetcam.TriggerRotate 01")
       SetPropertyFloat("dbc_1st_gus_tut.Gremlin_Gus 01", "UsableRadius", 0)
       StartFadeInNoHUD(0.8)
-      DBC_1st_ZoneA_CurrentMachine = A3_34
-      if A3_34 == "DBC_1st_ZoneA_TimMachineState" then
+      DBC_1st_ZoneA_CurrentMachine = param4
+      if param4 == "DBC_1st_ZoneA_TimMachineState" then
         TeleportToEntity(GetPlayer(), "dbc_1st_igc.MickeySpinMarker 02")
         GrabCameraNif("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam 01", nil, CAMERA_LERP_TRANSITION, 0)
         AnimGBReset("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam 01")
         AnimGBSequence("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam 01", "death")
-      elseif A3_34 == "DBC_1st_ZoneA_MortMachineState" then
+      elseif param4 == "DBC_1st_ZoneA_MortMachineState" then
         TeleportToEntity(GetPlayer(), "dbc_1st_zonea_dynamic.MickeySpinMarker 01")
         GrabCameraNif("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam_right 01", nil, CAMERA_LERP_TRANSITION, 0)
         AnimGBReset("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam_right 01")
         AnimGBSequence("dbc_1st_igc.DBC_visit1_lab_robotArm_death_cam_right 01", "death")
       end
-      AnimGBSequence(A0_31, "3rdStage")
-      AudioPostEventOn(A0_31, "Play_sfx_DBC_Lab_Arm_Machine_Damaged")
+      AnimGBSequence(param1, "3rdStage")
+      AudioPostEventOn(param1, "Play_sfx_DBC_Lab_Arm_Machine_Damaged")
       StartEmitters("Arm_EffectG" .. GetGlobal("DBC_1st_ZoneA_TimMachine") + GetGlobal("DBC_1st_ZoneA_MortMachine"))
       AudioPostEventOn(GetPlayer(), "Play_sfx_DBC_Evnt_RobotArm_ShutDown")
       RequestRobotArmElectrocute("dbc_1st_zonea_dynamic.Robot_Arm", 1, true)
@@ -419,8 +393,8 @@ function L0_0(A0_31, A1_32, A2_33, A3_34, A4_35)
     end
   end
 end
-DBC_1st_ZoneA_DontFreeGremlins = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_SecondCameraAfterBreak()
   if DBC_1st_ZoneA_CurrentMachine == "DBC_1st_ZoneA_TimMachineState" then
     FireUser1("LeftMachineGusExitCamera")
   elseif DBC_1st_ZoneA_CurrentMachine == "DBC_1st_ZoneA_MortMachineState" then
@@ -441,8 +415,8 @@ function L0_0()
   SetPropertyEntity("dbc_1st_zonea_dynamic.robotArm_eye 01", "RotateToEntity", nil)
   SetPropertyEntity("dbc_1st_zonea_dynamic.robotArm_eyePivot 01", "RotateToEntity", nil)
 end
-DBC_1st_ZoneA_SecondCameraAfterBreak = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_FinalCameraChoose()
   StartFadeOut(0.8)
   wait(0.8)
   if DBC_1st_ZoneA_CurrentMachine == "DBC_1st_ZoneA_TimMachineState" then
@@ -465,12 +439,12 @@ function L0_0()
   wait(0.05)
   HideReticleOnly()
 end
-DBC_1st_ZoneA_FinalCameraChoose = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_DisableCameraTriggers()
   ForEachEntityInGroup(Disable, "DBC_1st_ZoneA_SplineCameraTriggers")
 end
-DBC_1st_ZoneA_DisableCameraTriggers = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_ReturnToFirstmachine()
   if GetGlobal("DBC_1st_ZoneA_MortMachine") == 0 then
     DestroyEntity("dbc_1st_gus_tut.ExitDoorTrigger 01")
     FireUser1("LeftMachineCamera")
@@ -483,20 +457,14 @@ function L0_0()
     DBC_1st_ZoneA_ReturnToSplineCamera()
   end
 end
-DBC_1st_ZoneA_ReturnToFirstmachine = L0_0
-function L0_0(A0_36, A1_37)
-  local L2_38
-  L2_38 = "dbc_1st_zonea_dynamic.Robot_Arm"
-  RequestRobotArmChangeIdle(L2_38, A1_37)
+
+function DBC_1st_ZoneA_SetArmIdle(param1, param2)
+  RequestRobotArmChangeIdle("dbc_1st_zonea_dynamic.Robot_Arm", param2)
 end
-DBC_1st_ZoneA_SetArmIdle = L0_0
-function L0_0()
-  local L0_39
-  L0_39 = SaveCheckpoint
-  L0_39(nil, "DBC_1st_ZoneA_LoadCheckpoint", "dbc_1st_zonea_dynamic.MickeyStartPositionMarker 01")
-  L0_39 = GetPosition
-  L0_39 = L0_39(GetPlayer())
-  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), L0_39) do
+
+function DBC_1st_ZoneA_LeftBreakReturnCamera()
+  SaveCheckpoint(nil, "DBC_1st_ZoneA_LoadCheckpoint", "dbc_1st_zonea_dynamic.MickeyStartPositionMarker 01")
+  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), GetPosition(GetPlayer())) do
     wait(0.5)
     Print("************************************* - Prefab_ProjectorMickeyMove - wait 0.5")
   end
@@ -504,14 +472,10 @@ function L0_0()
   ForEachEntityInGroup(DestroyEntity, "DBC_1st_ZoneA_SplineCameraTriggers")
   SetPropertyFloat("dbc_1st_gus_tut.Gremlin_Gus 01", "UsableRadius", 0)
 end
-DBC_1st_ZoneA_LeftBreakReturnCamera = L0_0
-function L0_0()
-  local L0_40
-  L0_40 = SaveCheckpoint
-  L0_40(nil, "DBC_1st_ZoneA_LoadCheckpoint", "dbc_1st_zonea_dynamic.MickeyStartPositionMarker 01")
-  L0_40 = GetPosition
-  L0_40 = L0_40(GetPlayer())
-  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), L0_40) do
+
+function DBC_1st_ZoneA_RightBreakReturnCamera()
+  SaveCheckpoint(nil, "DBC_1st_ZoneA_LoadCheckpoint", "dbc_1st_zonea_dynamic.MickeyStartPositionMarker 01")
+  while DBC_1st_ZoneA_MickeyPosition(GetPosition(GetPlayer()), GetPosition(GetPlayer())) do
     wait(0.5)
     Print("************************************* - Prefab_ProjectorMickeyMove - wait 0.5")
   end
@@ -519,12 +483,12 @@ function L0_0()
   ForEachEntityInGroup(DestroyEntity, "DBC_1st_ZoneA_SplineCameraTriggers")
   SetPropertyFloat("dbc_1st_gus_tut.Gremlin_Gus 01", "UsableRadius", 0)
 end
-DBC_1st_ZoneA_RightBreakReturnCamera = L0_0
-function L0_0()
+
+function DBC_1st_NearMachineCameraRelease()
   ClearAllCameraAttributesTimed(1)
 end
-DBC_1st_NearMachineCameraRelease = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_ReturnToSplineCamera()
   SetCameraAttributes("dbc_1st_zonea_offsetcam.SplineCameraOverride 02")
   Unhide("WallBanner")
   wait(1)
@@ -535,53 +499,47 @@ function L0_0()
   SetCameraAttributes("dbc_1st_zonea_offsetcam.SplineCameraOverride 01")
   HideReticleOnly()
 end
-DBC_1st_ZoneA_ReturnToSplineCamera = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_OpenLabExitDoors()
   AnimGBSequence("dbc_1st_zoneb_dynamic.DBC_ZoneE_LabDoor01 01", "Open")
   AudioPostEventOn("dbc_1st_zonea_audio.Sound_Marker_HallDoor 01", "Play_sfx_DBC_Evnt_HallDoor_Open")
 end
-DBC_1st_ZoneA_OpenLabExitDoors = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_CloseLabExitDoors()
   AnimGBSequence("dbc_1st_zoneb_dynamic.DBC_ZoneE_LabDoor01 01", "Closed")
   AudioPostEventOn("dbc_1st_zonea_audio.Sound_Marker_HallDoor 01", "Play_sfx_DBC_Evnt_HallDoor_Close")
 end
-DBC_1st_ZoneA_CloseLabExitDoors = L0_0
-function L0_0(A0_41)
-  FireThread(Prefab_GrabCameraFancy, A0_41)
+
+function DBC_1st_ZoneA_PurpleSmashCutscene(param1)
+  FireThread(Prefab_GrabCameraFancy, param1)
   DBC_1st_ArmSmashColor("dbc_1st_zonea_dynamic.Robot_Arm", "purple")
 end
-DBC_1st_ZoneA_PurpleSmashCutscene = L0_0
-function L0_0(A0_42, A1_43, A2_44)
-  local L3_45, L4_46, L5_47, L6_48, L7_49, L8_50
-  if A1_43 == "in" then
-    L3_45 = "dbc_1st_zonea_dynamic.Robot_Arm"
-    L4_46 = SetRobotArmSpotlightDisabled
-    L4_46(L5_47, L6_48)
-    L4_46 = DBC_1st_ZoneA_SetArmIdle
-    L4_46(L5_47, L6_48)
-    L4_46 = 0
-    for L8_50 = 7, 9 do
-      SetRobotArmAttackTypeAngleInfo(L3_45, L8_50, A2_44)
-      SetRobotArmAttackTypeEnabled(L3_45, L8_50, true)
+
+function DBC_1st_ZoneA_ArmLookAroundMachine(param1, param2, param3)
+  local var1, var2, var3, var4
+  if param2 == "in" then
+    SetRobotArmSpotlightDisabled(var2, var3)
+    DBC_1st_ZoneA_SetArmIdle(var2, var3)
+    var1 = 0
+    for var4 = 7, 9 do
+      SetRobotArmAttackTypeAngleInfo("dbc_1st_zonea_dynamic.Robot_Arm", var4, param3)
+      SetRobotArmAttackTypeEnabled("dbc_1st_zonea_dynamic.Robot_Arm", var4, true)
     end
-  elseif A1_43 == "out" then
-    L3_45 = "dbc_1st_zonea_dynamic.Robot_Arm"
-    L4_46 = SetRobotArmSpotlightDisabled
-    L4_46(L5_47, L6_48)
-    L4_46 = DBC_1st_ZoneA_SetArmIdle
-    L4_46(L5_47, L6_48)
-    L4_46 = 0
-    for L8_50 = 7, 9 do
-      SetRobotArmAttackTypeEnabled(L3_45, L8_50, false)
+  elseif param2 == "out" then
+    SetRobotArmSpotlightDisabled(var2, var3)
+    DBC_1st_ZoneA_SetArmIdle(var2, var3)
+    var1 = 0
+    for var4 = 7, 9 do
+      SetRobotArmAttackTypeEnabled("dbc_1st_zonea_dynamic.Robot_Arm", var4, false)
     end
   end
 end
-DBC_1st_ZoneA_ArmLookAroundMachine = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_EndLevelTracking()
   EndTrackingCurrentLevelForScoring("DBC_1st_ZoneA")
 end
-DBC_1st_ZoneA_EndLevelTracking = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusMachineIntro()
   RestrictCutSceneInput()
   StartFadeOut(0.5)
   wait(0.5)
@@ -596,8 +554,8 @@ function L0_0()
   GrabCameraNif("dbc_1st_igc.DBC_visit1_lab_robotArm_transCam 01", nil, CAMERA_EASING_TRANSITION, 0)
   FireSequence("dbc_1st_gus_tut.Gremlin_Gus 01", "DBC_1st_spinning")
 end
-DBC_1st_ZoneA_GusMachineIntro = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusMachineIntro_end()
   StartFadeOut(0.5)
   wait(0.5)
   DBC_1st_ZoneA_GusDefault()
@@ -612,60 +570,56 @@ function L0_0()
   DBC_1st_ZoneA_GusIntro_Played = 1
   ShowHud()
 end
-DBC_1st_ZoneA_GusMachineIntro_end = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusTalk()
   EnterCutscene("dbc_1st_gus_tut.Gremlin_Gus 01", 102)
 end
-DBC_1st_ZoneA_GusTalk = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusBeckon()
   EnterCutscene("dbc_1st_gus_tut.Gremlin_Gus 01", 99)
 end
-DBC_1st_ZoneA_GusBeckon = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusDefault()
   ExitCutscene("dbc_1st_gus_tut.Gremlin_Gus 01")
   AnimEvent("dbc_1st_gus_tut.Gremlin_Gus 01", EVENT_Force_Idle)
 end
-DBC_1st_ZoneA_GusDefault = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusBeckon2()
   if DBC_1st_ZoneA_GusIntro_Played == 0 then
     EnterCutscene("dbc_1st_gus_tut.Gremlin_Gus 01", 23)
   end
 end
-DBC_1st_ZoneA_GusBeckon2 = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusBeckon3()
   if GetGlobal("DBC_1st_ZoneA_TimMachine") + GetGlobal("DBC_1st_ZoneA_MortMachine") == 2 then
     EnterCutscene("dbc_1st_gus_tut.Gremlin_Gus 01", 103)
   end
 end
-DBC_1st_ZoneA_GusBeckon3 = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusBridgeTeleport()
   FireThread(DBC_1st_ZoneA_TeleportGremlinToEntityTaunt, "dbc_1st_gus_tut.Gremlin_Gus 01", "dbc_1st_gus_tut.GusPosition 08")
 end
-DBC_1st_ZoneA_GusBridgeTeleport = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_GusLeftMachineTeleport()
   FireThread(DBC_1st_ZoneA_TeleportGremlinToEntityRight, "dbc_1st_gus_tut.Gremlin_Gus 01", "dbc_1st_gus_tut.GusPosition 01")
 end
-DBC_1st_ZoneA_GusLeftMachineTeleport = L0_0
-function L0_0()
-  local L0_51, L1_52
+
+function DBC_1st_ZoneA_SpotlightOff()
+  local var1, var2
 end
-DBC_1st_ZoneA_SpotlightOff = L0_0
-function L0_0()
-  local L0_53, L1_54
+function DBC_1st_ZoneA_SpotlightWhite()
+  local var1, var2
 end
-DBC_1st_ZoneA_SpotlightWhite = L0_0
-function L0_0()
-  local L0_55, L1_56
+
+function DBC_1st_ZoneA_SpotlightRed()
+  local var1, var2
 end
-DBC_1st_ZoneA_SpotlightRed = L0_0
-function L0_0()
-  local L0_57, L1_58
-  L0_57 = MoveToEntity
-  L1_58 = "dbc_1st_zonea_dynamic.Ability_SpinAttack 02"
-  L0_57(L1_58, GetPlayer())
+
+function DBC_1st_ZoneA_GiveMickeySpin()
+  MoveToEntity("dbc_1st_zonea_dynamic.Ability_SpinAttack 02", GetPlayer())
 end
-DBC_1st_ZoneA_GiveMickeySpin = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_RedChestEndFunction()
   RestrictCutSceneInput()
   wait(0.1)
   HideReticleOnly()
@@ -674,32 +628,32 @@ function L0_0()
   UnrestrictCutSceneInput()
   FireSequence("dbc_1st_gus_tut.Gremlin_Gus 01", "DBC_1st_ZoneC_FirstPin")
 end
-DBC_1st_ZoneA_RedChestEndFunction = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_RobotLightOn()
   SetRobotArmSpotlightDisabled("dbc_1st_zonea_dynamic.Robot_Arm", false)
 end
-DBC_1st_ZoneA_RobotLightOn = L0_0
-function L0_0()
+
+function DBC_1st_ZoneA_RobotLightOff()
   SetRobotArmSpotlightDisabled("dbc_1st_zonea_dynamic.Robot_Arm", true)
 end
-DBC_1st_ZoneA_RobotLightOff = L0_0
-function L0_0()
+
+function DBC_1st_SaveConceptArt()
   SaveCheckpoint(nil, "DBC_1st_ZoneA_LoadCheckpoint", "dbc_1st_zonea_dynamic.MickeyStartPositionMarker 01")
 end
-DBC_1st_SaveConceptArt = L0_0
-function L0_0(A0_59, A1_60)
-  SetGlobal(A1_60, 1)
+
+function DBC_1st_ZoneA_BreakMachineGlobal(param1, param2)
+  SetGlobal(param2, 1)
 end
-DBC_1st_ZoneA_BreakMachineGlobal = L0_0
-function L0_0(A0_61, A1_62)
-  if GetGlobal(A1_62) == 1 then
-    DestroyEntity(A0_61)
+
+function DBC_1st_ZoneA_BreakMachineGlobalCheck(param1, param2)
+  if GetGlobal(param2) == 1 then
+    DestroyEntity(param1)
   end
 end
-DBC_1st_ZoneA_BreakMachineGlobalCheck = L0_0
-L0_0 = 0
-musicStage = L0_0
-function L0_0()
+
+musicStage = 0
+
+function DBC_1st_ZoneA_Music_AfterFight()
   if musicStage == 0 then
     wait(2)
     musicStage = 1
@@ -711,4 +665,3 @@ function L0_0()
     AudioPostEventOn(GetPlayer(), "Play_music_darkbeautycastle")
   end
 end
-DBC_1st_ZoneA_Music_AfterFight = L0_0

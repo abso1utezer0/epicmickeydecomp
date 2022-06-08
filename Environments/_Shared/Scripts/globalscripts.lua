@@ -1,44 +1,38 @@
 wait = coroutine.yield
-
 Wait = coroutine.yield
-
 g_MusicState = "Auto"
-
 NativeAudioSetState = AudioSetState
-
-function AudioSetState(param1, param2, param3)
-  if param2 == nil or param3 == nil then
+function AudioSetState(A0_0, A1_1, A2_2)
+  if A1_1 == nil or A2_2 == nil then
     return
   end
-  NativeAudioSetState(param1, param2, param3)
-  if param2 == "Music_State" then
-    g_MusicState = param3
+  NativeAudioSetState(A0_0, A1_1, A2_2)
+  if A1_1 == "Music_State" then
+    g_MusicState = A2_2
   end
 end
-
-function DoStinger(param1, param2)
-  if param2 == nil then
-    param2 = 5
+function DoStinger(A0_3, A1_4)
+  local L2_5
+  L2_5 = g_MusicState
+  if A1_4 == nil then
+    A1_4 = 5
   end
-  AudioSetState(GetPlayer(), "Music_State", param1)
-  FireThread(EndStinger, param2, g_MusicState)
+  AudioSetState(GetPlayer(), "Music_State", A0_3)
+  FireThread(EndStinger, A1_4, L2_5)
 end
-
-function EndStinger(param1, param2)
-  Wait(param1)
-  AudioSetState(GetPlayer(), "Music_State", param2)
+function EndStinger(A0_6, A1_7)
+  Wait(A0_6)
+  AudioSetState(GetPlayer(), "Music_State", A1_7)
 end
-
 function PrintTable(A0_8, A1_9)
-  local L2_10, L3_11, L4_12, dashLine, L6_14
-  dashLine = "----"
-  L2_10(L3_11, L4_12, dashLine)
-  for dashLine, L6_14 in L2_10(L3_11) do
-    print("t[", dashLine, "]=", L6_14)
+  local L2_10, L3_11, L4_12, L5_13, L6_14
+  L5_13 = "----"
+  L2_10(L3_11, L4_12, L5_13)
+  for L5_13, L6_14 in L2_10(L3_11) do
+    print("t[", L5_13, "]=", L6_14)
   end
   L2_10(L3_11)
 end
-
 function DoEndGame()
   SetGlobal("DBC_LastHeartBoss", 26)
   AnimGBSequence("dbc_zones.HeartTentacleA1End 01", "Pop")
@@ -58,15 +52,12 @@ function DoEndGame()
   SetEndingGame(true)
   CleanLoadLevel("Levels/Main_Menu.level")
 end
-
 function SimulateEndGame()
   DoEndGame()
 end
-
 function TestLoadCallback()
   Print("Load callback executed!")
 end
-
 function PlayMovieAdvanced(A0_15)
   RestrictCutSceneInput()
   StartFadeOut(1)
@@ -76,19 +67,15 @@ function PlayMovieAdvanced(A0_15)
   Wait(1)
   UnrestrictCutSceneInput()
 end
-
 function DisableGlint(A0_16)
   SetR3MTLockAnimation(A0_16, 0)
 end
-
 function EnableGlint(A0_17)
   SetR3MTUnlockAnimation(A0_17)
 end
-
 function SetAnimVariant(A0_18, A1_19)
   AnimVarInt(A0_18, VAR_AI_Variant, A1_19)
 end
-
 function WaitForDialog(A0_20)
   local L1_21
   repeat
@@ -100,55 +87,46 @@ function WaitForDialog(A0_20)
   end
   return L1_21
 end
-
 function AddGlobal(A0_22, A1_23)
   SetGlobal(A0_22, GetGlobal(A0_22) + A1_23)
 end
-
 function IncrementGlobal(A0_24)
   AddGlobal(A0_24, 1)
 end
-
 function DecrementGlobal(A0_25)
   AddGlobal(A0_25, -1)
 end
-
 function IncrementGlobalSD(A0_26, A1_27)
   AddGlobal(A1_27, 1)
 end
-
 function DecrementGlobalSD(A0_28, A1_29)
   AddGlobal(A1_29, -1)
 end
-
 testCharMood = 0
-
-function CONV_HUB_Test_Func(param1, param2)
-  AnimVarInt(param2, VAR_Mood_Type, testCharMood)
-  AnimEvent(param2, EVENT_Start_Talk)
-  DialogBoxNoPause(param2, "Talking with mood=" .. testCharMood)
-  WaitForDialog(param2)
+function CONV_HUB_Test_Func(A0_30, A1_31)
+  AnimVarInt(A1_31, VAR_Mood_Type, testCharMood)
+  AnimEvent(A1_31, EVENT_Start_Talk)
+  DialogBoxNoPause(A1_31, "Talking with mood=" .. testCharMood)
+  WaitForDialog(A1_31)
   wait(3)
-  DialogBoxNoPause(param2, "Emote negative")
-  WaitForDialog(param2)
-  AnimEvent(param2, EVENT_Start_EmoteSad)
+  DialogBoxNoPause(A1_31, "Emote negative")
+  WaitForDialog(A1_31)
+  AnimEvent(A1_31, EVENT_Start_EmoteSad)
   wait(4)
-  DialogBoxNoPause(param2, "Emote positive")
-  WaitForDialog(param2)
-  AnimEvent(param2, EVENT_Start_EmoteHappy)
+  DialogBoxNoPause(A1_31, "Emote positive")
+  WaitForDialog(A1_31)
+  AnimEvent(A1_31, EVENT_Start_EmoteHappy)
   wait(4)
-  DialogBoxNoPause(param2, "Emote extra positive")
-  WaitForDialog(param2)
-  AnimEvent(param2, EVENT_Start_EmoteVeryHappy)
+  DialogBoxNoPause(A1_31, "Emote extra positive")
+  WaitForDialog(A1_31)
+  AnimEvent(A1_31, EVENT_Start_EmoteVeryHappy)
   wait(4)
   testCharMood = testCharMood + 1
   if testCharMood == 3 then
     testCharMood = 0
   end
 end
-
 conversationEntered = false
-
 function Conversation(A0_32, A1_33, A2_34)
   local L3_35, L4_36, L5_37, L6_38, L7_39, L8_40
   L3_35 = conversationEntered
@@ -252,86 +230,76 @@ function Conversation(A0_32, A1_33, A2_34)
   L4_36 = false
   conversationEntered = L4_36
 end
-
 global_entity_data_table = {}
-
 Openfile("./environments/_shared/scripts/strict.lua")
 Openfile("./environments/_shared/scripts/autosave.lua")
 Openfile("./environments/_shared/scripts/restore.lua")
 Openfile("./environments/_shared/scripts/MagicWand.lua")
 Openfile("./environments/_shared/scripts/CDC.lua")
 Openfile("./environments/_shared/scripts/sketches.lua")
-
 global_data = {
   test = {
     test2 = {}
   }
 }
-
 level_data = {
   test3 = {
     test4 = {}
   }
 }
-
-function TestEvent(param1)
-  Print("Event fired." .. param1)
+function TestEvent(A0_41)
+  Print("Event fired." .. A0_41)
 end
-
-function LoadNIF(param1)
-  LoadNIFImpl(param1)
+function LoadNIF(A0_42)
+  LoadNIFImpl(A0_42)
 end
-
-function UnloadNIF(param1)
-  UnloadNIFImpl(param1)
+function UnloadNIF(A0_43)
+  UnloadNIFImpl(A0_43)
 end
-
-function LoadLevel(param1, param2)
-  TransitionToLevel(tostring(param2))
+function LoadLevel(A0_44, A1_45)
+  local L2_46
+  L2_46 = TransitionToLevel
+  L2_46(tostring(A1_45))
 end
-
-function StreamZones(param1, param2) 
-  StreamPart(tostring(param2))
+function StreamZones(A0_47, A1_48)
+  local L2_49
+  L2_49 = StreamPart
+  L2_49(tostring(A1_48))
 end
-
-function StreamInterior(param1, param2)
-  StreamInteriorZone(tostring(param2))
+function StreamInterior(A0_50, A1_51)
+  local L2_52
+  L2_52 = StreamInteriorZone
+  L2_52(tostring(A1_51))
 end
-
-function RestartLevel()
+function RestartLevel(A0_53)
   RestartCurrentLevel()
 end
-
-function WaitForLevelLoad()
+function WaitForLevelLoad(A0_54, A1_55)
   WaitForLevelToLoad()
 end
-
-function SetPlayerSpawnTransformSelf(param1)
-  SetPlayerSpawnTransformEntity(param1)
+function SetPlayerSpawnTransformSelf(A0_56)
+  SetPlayerSpawnTransformEntity(A0_56)
 end
-
-function SaveCheckpointNoPosition(param1, param2)
-  local var1
-  var1 = param2
-  if var1 == nil then
-    var1 = ""
+function SaveCheckpointNoPosition(A0_57, A1_58)
+  local L2_59
+  L2_59 = A1_58
+  if L2_59 == nil then
+    L2_59 = ""
   end
-  SaveGameToMemory(var1, false)
+  SaveGameToMemory(L2_59, false)
 end
-
-function SaveCheckpoint(param1, param2, param3)
-  local var1, var2
-  var2 = param3
-  if var1 == nil then
-    var1 = ""
+function SaveCheckpoint(A0_60, A1_61, A2_62)
+  local L3_63, L4_64
+  L3_63 = A2_62
+  if L3_63 == nil then
+    L3_63 = ""
   end
-  var2 = param2
-  if var2 == nil then
-    var2 = ""
+  L4_64 = A1_61
+  if L4_64 == nil then
+    L4_64 = ""
   end
-  SaveGameToMemory(var2, true, var1)
+  SaveGameToMemory(L4_64, true, L3_63)
 end
-
 function SaveCheckpointSelf(A0_65, A1_66)
   local L2_67
   L2_67 = A1_66
@@ -341,25 +309,20 @@ function SaveCheckpointSelf(A0_65, A1_66)
   SetPlayerSpawnTransformEntity(A0_65)
   SaveGameToMemory(L2_67, false)
 end
-
 function LoadCheckpoint(A0_68)
   LoadGameFromMemory()
 end
-
 function CreatePlayerMetric(A0_69, A1_70)
   local L2_71
   L2_71 = CreateMetric
   L2_71(tostring(A1_70))
 end
-
 function TeleportSelf(A0_72, A1_73)
   MoveToEntity(A0_72, A1_73)
 end
-
 function SaveGremlin()
   SetGlobal("GV_GremlinsSaved", GetGlobal("GV_GremlinsSaved") + 1)
 end
-
 function Enable2DSetup()
   Print("Enable 2D Setup")
   SetHudFor2D(GetPlayer(), false)
@@ -367,7 +330,6 @@ function Enable2DSetup()
   PlayerHasPaintThinnerAbilities(false)
   DisableGuardianSystem()
 end
-
 function Disable2DSetup()
   Print("Disable 2D Setup")
   SetHudFor2D(GetPlayer(), true)
@@ -375,7 +337,6 @@ function Disable2DSetup()
   PlayerHasPaintThinnerAbilities(true)
   EnableGuardianSystem()
 end
-
 function SetEndgameVariables()
   Print("Setting up endgame variables")
   if GetGlobal("GV_PeteStuff") == 1 then
@@ -415,7 +376,6 @@ function SetEndgameVariables()
   Print("Endgame_Var_Pos_SmallPete: " .. GetGlobal("Endgame_Var_Pos_SmallPete"))
   Print("Endgame_Var_Pos_Petetronic: " .. GetGlobal("Endgame_Var_Pos_Petetronic"))
 end
-
 function EnterCurrentMeanStreet()
   if GetGlobal("MS_MeanStreetProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/MeanStreet_V1.level")
@@ -436,34 +396,28 @@ function EnterCurrentMeanStreet()
     LoadLevel(GetPlayer(), "Levels/MeanStreet_V6.level")
   end
 end
-
 function EnableGuardianHint(A0_74)
   ForEachEntityInGroup(EnableComponent, A0_74, "Guardian Hint Component")
 end
-
 function DisableGuardianHint(A0_75)
   ForEachEntityInGroup(DisableComponent, A0_75, "Guardian Hint Component")
 end
-
 function SetMickeyTickets()
   local L0_76
   L0_76 = GetPropertyFloat
   L0_76 = L0_76(GetPlayer(), "ETicket")
   SetGlobal("Mickey_Tickets", L0_76)
 end
-
 function HideGremlinWrench()
   local L0_77
   L0_77 = Hide
   L0_77(GetChildEntityByName(_self(), "GremlinWrench"))
 end
-
 function UnhideGremlinWrench()
   if not IsHidden(_self()) then
     Unhide(GetChildEntityByName(_self(), "GremlinWrench"))
   end
 end
-
 function ShakeCamera_Default(A0_78)
   local L1_79, L2_80, L3_81, L4_82, L5_83, L6_84
   L1_79 = 2
@@ -474,7 +428,6 @@ function ShakeCamera_Default(A0_78)
   L6_84 = 0.025
   ShakeCamera(L1_79, L2_80, L3_81, L4_82, L5_83, L6_84)
 end
-
 function KnockbackExplode_Default(A0_85)
   local L1_86, L2_87, L3_88, L4_89
   L1_86 = ST_KNOCKBACK
@@ -485,7 +438,6 @@ function KnockbackExplode_Default(A0_85)
   L4_89 = 6
   StimulusSphere(_self(), L1_86, L2_87, L3_88, L4_89)
 end
-
 function start_csg_ops(A0_90)
   local L1_91
   while true do
@@ -495,14 +447,12 @@ function start_csg_ops(A0_90)
     wait(0.2)
   end
 end
-
 function onetime_csg_ops(A0_92)
   local L1_93
   L1_93 = GetPosition
   L1_93 = L1_93(A0_92)
   CSGOperation(L1_93, false, 1, 1, vector4(1, 0, 0, 0))
 end
-
 function start_csg_ops_paint(A0_94)
   local L1_95
   while true do
@@ -512,12 +462,10 @@ function start_csg_ops_paint(A0_94)
     wait(0.2)
   end
 end
-
 function lua_zoom_to(A0_96, A1_97)
   Print("ZoomTo called with:" .. A1_97)
   ZoomToLevel(A1_97)
 end
-
 function SetMickeyToMaxHealth()
   local L0_98, L1_99
   L0_98 = _player
@@ -526,7 +474,6 @@ function SetMickeyToMaxHealth()
   SetPropertyInt(L0_98, "MaxHealth", L1_99, 0)
   SetPropertyInt(L0_98, "Health", L1_99, 0)
 end
-
 function SetPaintAmmoToMax()
   local L0_100, L1_101, L2_102
   L0_100 = 70
@@ -537,7 +484,6 @@ function SetPaintAmmoToMax()
   SetPropertyFloat(GetPlayer(), "PaintRechargeMax", L1_101, 0)
   SetPropertyFloat(GetPlayer(), "Paint", L0_100, 0)
 end
-
 function SetThinnerAmmoToMax()
   local L0_103, L1_104, L2_105
   L0_103 = 70
@@ -548,7 +494,6 @@ function SetThinnerAmmoToMax()
   SetPropertyFloat(GetPlayer(), "ThinnerRechargeMax", L1_104, 0)
   SetPropertyFloat(GetPlayer(), "Thinner", L0_103, 0)
 end
-
 function IncreaseMickeysMaxHealth(A0_106)
   local L1_107, L2_108
   L1_107 = _player
@@ -559,7 +504,6 @@ function IncreaseMickeysMaxHealth(A0_106)
   SetPropertyInt(L1_107, "MaxHealth", L2_108, 0)
   SetPropertyInt(L1_107, "Health", L2_108, 0)
 end
-
 function IncreaseMaxPaintAmmo()
   local L0_109, L1_110, L2_111
   L0_109 = GetPropertyFloat
@@ -578,7 +522,6 @@ function IncreaseMaxPaintAmmo()
   SetPropertyFloat(GetPlayer(), "PaintRechargeMax", L1_110, 0)
   SetPropertyFloat(GetPlayer(), "Paint", L0_109, 0)
 end
-
 function IncreaseMaxThinnerAmmo()
   local L0_112, L1_113, L2_114
   L0_112 = GetPropertyFloat
@@ -597,7 +540,6 @@ function IncreaseMaxThinnerAmmo()
   SetPropertyFloat(GetPlayer(), "ThinnerRechargeMax", L1_113, 0)
   SetPropertyFloat(GetPlayer(), "Thinner", L0_112, 0)
 end
-
 function IncreaseMaxTVSketch()
   local L0_115
   L0_115 = GetPropertyFloat
@@ -606,7 +548,6 @@ function IncreaseMaxTVSketch()
   SetPropertyFloat(_player(), "SketchMax", L0_115, 0)
   Print("****Setting max TV sketch to: " .. L0_115)
 end
-
 function IncreaseMaxWatchSketch()
   local L0_116
   L0_116 = GetPropertyFloat
@@ -615,7 +556,6 @@ function IncreaseMaxWatchSketch()
   SetPropertyFloat(_player(), "SketchMax", L0_116, 1)
   Print("****Setting max watch sketch to: " .. L0_116)
 end
-
 function IncreaseMaxAnvilSketch()
   local L0_117
   L0_117 = GetPropertyFloat
@@ -624,7 +564,6 @@ function IncreaseMaxAnvilSketch()
   SetPropertyFloat(_player(), "SketchMax", L0_117, 2)
   Print("****Setting max anvil sketch to: " .. L0_117)
 end
-
 function MegaSketchUnlock()
   local L0_118, L1_119, L2_120
   L0_118 = GetPropertyFloat
@@ -648,34 +587,29 @@ function MegaSketchUnlock()
   Print("****Setting max watch sketch to: " .. L1_119)
   Print("****Setting max anvil sketch to: " .. L2_120)
 end
-
 function IncreaseMaxTicket_L1()
   local L0_121
   L0_121 = 3000
   Print("*************INVENTORY: TICKET MAX =  " .. L0_121)
   SetPropertyFloat(_player(), "ETicketMax", L0_121, 0)
 end
-
 function IncreaseMaxTicket_L2()
   local L0_122
   L0_122 = 5000
   Print("*************INVENTORY: TICKET MAX =  " .. L0_122)
   SetPropertyFloat(_player(), "ETicketMax", L0_122, 0)
 end
-
 function IncreaseMaxTicket_L3()
   local L0_123
   L0_123 = 9999
   Print("*************INVENTORY: TICKET MAX =  " .. L0_123)
   SetPropertyFloat(_player(), "ETicketMax", L0_123, 0)
 end
-
 TotalTicketsInLevel = 0
 function ResetTicketsCount(A0_124, A1_125)
   ResetTicketCount()
   TotalTicketsInLevel = A1_125
 end
-
 function DisplayMapStats(A0_126)
   local L1_127, L2_128
   L1_127 = math
@@ -691,7 +625,6 @@ function DisplayMapStats(A0_126)
 You collected ]] .. L1_127 .. " % " .. "of the tickets!"
   Display(A0_126, L2_128, 8)
 end
-
 function PaintStim(A0_129)
   local L1_130, L2_131, L3_132
   L1_130 = ST_PAINT
@@ -700,115 +633,90 @@ function PaintStim(A0_129)
   L3_132 = L3_132(A0_129)
   StimulusEntity(self, L1_130, L2_131, L3_132, A0_129)
 end
-
 PickupLifetime = 15
-
 function SetPickupLifetime(A0_133)
   SetPropertyFloat(A0_133, "Lifetime", ETicketLifetime, 0)
 end
-
 function ToggleFollow(A0_134, A1_135)
   QueueBrainEvent(A0_134, BRAIN_ToggleFollowEntity, vector4(0, 0, 0), A1_135)
 end
-
 function AI_StartFollowingSpline(A0_136, A1_137)
   DisableMotion(A0_136)
   SplineFollower_TeleportToKnot(A0_136, A1_137)
   SplineFollower_SetDisabled(A0_136, false)
 end
-
 function AI_StopFollowingSpline(A0_138)
   SplineFollower_SetDisabled(A0_138, true)
   EnableMotion(A0_138)
 end
-
 function GetNPCHitPoints(A0_139)
   return 0
 end
-
 function DemoLevelCheckVarSet()
   local L0_140, L1_141
   L0_140 = SetGlobal
   L1_141 = "DemoLevelCheck_Global"
   L0_140(L1_141, GetConfigVariableBool("DemoLevelCheck"))
 end
-
 function E3Demo_StreamScalpRock()
   if GetConfigVariableBool("DemoLevelCheck") == true then
     StreamZones(GetPlayer(), "E3_TransToScalpRock")
   end
 end
-
 function MovePickupToMickey(A0_142)
   local L1_143, L2_144
   L1_143 = MoveToEntity
   L2_144 = A0_142
   L1_143(L2_144, GetPlayer())
 end
-
 function SetVars_MJM_v1_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_Pirates_v1_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_TL_v1_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_HM_v1_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_MJM_v2_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_Pirates_v2_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_HM_v2_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function SetVars_GV_v2_Complete()
   IncrementGlobal("HUB_VisitNumber")
 end
-
 function GetPlayerSpeed()
   return GetVelocity(GetPlayer()):length2()
 end
-
 function PlayAndUnlockMovie(A0_145, A1_146)
   SetUnlockedExtra(A1_146, false)
   PlayMovie(GetPlayer(), A0_145)
 end
-
 function PlayMovie(A0_147, A1_148)
   PlayMovieInternal(A0_147, A1_148)
 end
-
 function AI_SetHomeToCurrent(A0_149, A1_150)
   Wait(5)
   AIBSetTetherLoc(A0_149, GetPosition(A1_150))
   Print("AI Home Reset")
 end
-
 function GroupSetAppCulled(A0_151, A1_152)
   ForEachEntityInGroup(SetAppCulled, A1_152)
 end
-
 function GroupClearAppCulled(A0_153, A1_154)
   ForEachEntityInGroup(ClearAppCulled, A1_154)
 end
-
 function Generic_DoorLocked_SFX()
   AudioPostEventOn(GetPlayer(), "Play_sfx_door_lock")
 end
-
 function Mickey_Damage_Audio(A0_155, A1_156)
   if DamageEvent_HasStimulusType(A1_156, ST_PHYSICAL) and DamageEvent_EffectiveAmount(A1_156, ST_PHYSICAL) > 0 then
     AudioPostEventOn(A0_155, "Play_sfx_Mickey_damage_NotThinner")
