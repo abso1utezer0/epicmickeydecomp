@@ -1,29 +1,30 @@
-local L0_0, L1_1
-function L0_0()
+-- Fully reworked
+
+function SetTomorrowlandProgress()
   SetGlobal("MS_MeanStreetProgress", 2)
 end
-SetTomorrowlandProgress = L0_0
-function L0_0()
+
+function ToMSPosition1()
   SetGlobal("HUB_startposition", 1)
   LoadMeanStreet()
 end
-ToMSPosition1 = L0_0
-function L0_0()
+
+function ToMSPosition2()
   SetGlobal("HUB_startposition", 2)
   LoadMeanStreet()
 end
-ToMSPosition2 = L0_0
-function L0_0()
+
+function ToMSPosition3()
   SetGlobal("HUB_startposition", 3)
   LoadMeanStreet()
 end
-ToMSPosition3 = L0_0
-function L0_0()
+
+function ToMSPosition4()
   SetGlobal("HUB_startposition", 4)
   LoadMeanStreet()
 end
-ToMSPosition4 = L0_0
-function L0_0()
+
+function LoadMeanStreet()
   UnrestrictCutSceneInput()
   if GetGlobal("MS_MeanStreetProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/MeanStreet_V1.Level")
@@ -48,8 +49,8 @@ function L0_0()
     end
   end
 end
-LoadMeanStreet = L0_0
-function L0_0()
+
+function LoadVentureland()
   if GetGlobal("AL_AdventurelandProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/Adventureland_v1.Level")
   end
@@ -63,8 +64,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/Adventureland_v3.level")
   end
 end
-LoadVentureland = L0_0
-function L0_0()
+
+function LoadNewOrleansSquare()
   if GetGlobal("NO_NewOrleansProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/NewOrleans_V1.level")
   end
@@ -75,8 +76,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/NewOrleans_V3.level")
   end
 end
-LoadNewOrleansSquare = L0_0
-function L0_0()
+
+function LoadToonTown()
   if GetGlobal("TT_ToonTownProgress") == 1 then
     LoadLevel(GetPlayer(), "Levels/ToonTown_V1.level")
   end
@@ -87,8 +88,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/ToonTown_V3.level")
   end
 end
-LoadToonTown = L0_0
-function L0_0()
+
+function LoadTomorrowland()
   UnrestrictCutSceneInput()
   EnableGuardianSystem()
   if GetGlobal("MS_MeanStreetProgress") == 2 then
@@ -99,8 +100,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/TL_Visit2_Start.Level")
   end
 end
-LoadTomorrowland = L0_0
-function L0_0()
+
+function LoadMickeyjunk()
   Print("Loading Mickeyjunk")
   UnrestrictCutSceneInput()
   EnableGuardianSystem()
@@ -111,8 +112,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/MJM_ZoneF2.Level")
   end
 end
-LoadMickeyjunk = L0_0
-function L0_0()
+
+function LoadLonesomeManor()
   UnrestrictCutSceneInput()
   EnableGuardianSystem()
   if GetGlobal("NO_NewOrleansProgress") == 1 then
@@ -122,8 +123,8 @@ function L0_0()
     LoadLevel(GetPlayer(), "Levels/HMv2_Start.Level")
   end
 end
-LoadLonesomeManor = L0_0
-function L0_0()
+
+function GV_SBW_Load()
   if GetConfigVariableBool("DemoLevelCheck") == true then
     GetPrefabData("GV_SBW").TeleportToMarker = "EnterScalpRock"
     GetPrefabData("GV_SBW").EnterFunction = "HardLoadToSR"
@@ -133,8 +134,7 @@ function L0_0()
     StreamZones(GetPlayer(), "stream_7")
   end
 end
-GV_SBW_Load = L0_0
-function L0_0()
+
+function HardLoadToSR()
   LoadLevel(GetPlayer(), "Levels/E3Demo_SR.level")
 end
-HardLoadToSR = L0_0

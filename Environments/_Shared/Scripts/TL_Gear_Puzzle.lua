@@ -1,13 +1,13 @@
 -- Fully reworked
 
-function TL_Stretch_StretchMasterGear(var1)
+function TL_Stretch_StretchMasterGear(param1)
   Print("**********************TL_Stretch_StretchMasterGear")
   if GetGlobal("TL_StretchKeyEnabled") == 0 then
     Print("**********************TL_Stretch_StretchMasterGear: GetGlobal('TL_StretchKeyEnabled') == 0")
   elseif GetPropertyBool("TL_gearpuzzletemp.NOS_HM_StretchGearsA3 02", "Is Painted") == true and GetPropertyBool("TL_gearpuzzletemp.NOS_HM_StretchGearsA2 02", "Is Painted") == true then
     Print("**********************TL_Stretch_StretchMasterGear: GetGlobal('TL_StretchKeyEnabled') == 1 and GetGlobal('RocketVerticalCount') == 0")
     AudioPostEventOn("TL_gearpuzzletemp.NOS_HM_StretchGearsA1 02", "Play_sfx_TC_TCS_Obj_GearSpin")
-    Enable(var1)
+    Enable(param1)
     SetGlobal("TL_StretchMasterRotate", GetGlobal("TL_StretchMasterRotate") + 90)
     FireUser1("TL_zonef.NOS_HM_StretchGearsA1 02")
     wait(1)
@@ -87,10 +87,10 @@ function TL_StretchGear02Thinned()
   SetGlobal("TL_StretchPlatPos", GetGlobal("TL_StretchPlatPos") - 1)
 end
 
-function TL_Stretch_StretchMasterGear_2(var1)
+function TL_Stretch_StretchMasterGear_2(param1)
   if GetGlobal("TL_StretchKeyEnabled_2") == 0 then
   elseif GetGlobal("TL_StretchKeyEnabled_2") == 1 then
-    Enable(var1)
+    Enable(param1)
     SetGlobal("TL_StretchMasterRotate_2", GetGlobal("TL_StretchMasterRotate_2") + 90)
     TL_StretchPlatMaster_2()
   end

@@ -1,11 +1,11 @@
 -- Fully reworked and explained
 
 -- Restrict input and teleport to an entity
-function Teleport(var1)
+function Teleport(param1)
   RestrictCutSceneInput()
   StartFadeOut(0.5)
   Wait(1)
-  TeleportToEntity(GetPlayer(), var1)
+  TeleportToEntity(GetPlayer(), param1)
   StartFadeIn(3)
   Wait(1)
   UnrestrictCutSceneInput()

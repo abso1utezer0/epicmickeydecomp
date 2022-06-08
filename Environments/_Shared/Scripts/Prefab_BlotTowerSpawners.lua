@@ -1,13 +1,14 @@
-local L0_0, L1_1
-function L0_0()
+-- Fully reworked
+
+function StormBlot_SpitEmmitters()
   StartEmitterByName("StormBlot 01", "fx_stormblot_roar")
 end
-StormBlot_SpitEmmitters = L0_0
-function L0_0()
+
+function StormBlot_SpitEmmittersStop()
   StopEmitterByName("StormBlot 01", "fx_stormblot_roar")
 end
-StormBlot_SpitEmmittersStop = L0_0
-function L0_0()
+
+function StormBlot_HandEmmitters()
   StartEmitterByName("StormBlot 01", "StormBlotFingerSlime1")
   StartEmitterByName("StormBlot 01", "StormBlotFingerSlime2")
   StartEmitterByName("StormBlot 01", "StormBlotFingerSlime3")
@@ -17,4 +18,3 @@ function L0_0()
   StartEmitterByName("StormBlot 01", "StormBlotFingerSlime7")
   StartEmitterByName("StormBlot 01", "StormBlotFingerSlime8")
 end
-StormBlot_HandEmmitters = L0_0

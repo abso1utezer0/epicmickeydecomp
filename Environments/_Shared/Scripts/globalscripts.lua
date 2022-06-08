@@ -6,27 +6,27 @@ g_MusicState = "Auto"
 
 NativeAudioSetState = AudioSetState
 
-function AudioSetState(var1, var2, var3)
-  if var2 == nil or var3 == nil then
+function AudioSetState(param1, param2, param3)
+  if param2 == nil or param3 == nil then
     return
   end
-  NativeAudioSetState(var1, var2, var3)
-  if var2 == "Music_State" then
-    g_MusicState = var3
+  NativeAudioSetState(param1, param2, param3)
+  if param2 == "Music_State" then
+    g_MusicState = param3
   end
 end
 
-function DoStinger(var1, var2)
-  if var2 == nil then
-    var2 = 5
+function DoStinger(param1, param2)
+  if param2 == nil then
+    param2 = 5
   end
-  AudioSetState(GetPlayer(), "Music_State", var1)
-  FireThread(EndStinger, var2, g_MusicState)
+  AudioSetState(GetPlayer(), "Music_State", param1)
+  FireThread(EndStinger, param2, g_MusicState)
 end
 
-function EndStinger(var1, var2)
-  Wait(var1)
-  AudioSetState(GetPlayer(), "Music_State", var2)
+function EndStinger(param1, param2)
+  Wait(param1)
+  AudioSetState(GetPlayer(), "Music_State", param2)
 end
 
 function PrintTable(A0_8, A1_9)
@@ -123,23 +123,23 @@ end
 
 testCharMood = 0
 
-function CONV_HUB_Test_Func(var1, var2)
-  AnimVarInt(var2, VAR_Mood_Type, testCharMood)
-  AnimEvent(var2, EVENT_Start_Talk)
-  DialogBoxNoPause(var2, "Talking with mood=" .. testCharMood)
-  WaitForDialog(var2)
+function CONV_HUB_Test_Func(param1, param2)
+  AnimVarInt(param2, VAR_Mood_Type, testCharMood)
+  AnimEvent(param2, EVENT_Start_Talk)
+  DialogBoxNoPause(param2, "Talking with mood=" .. testCharMood)
+  WaitForDialog(param2)
   wait(3)
-  DialogBoxNoPause(var2, "Emote negative")
-  WaitForDialog(var2)
-  AnimEvent(var2, EVENT_Start_EmoteSad)
+  DialogBoxNoPause(param2, "Emote negative")
+  WaitForDialog(param2)
+  AnimEvent(param2, EVENT_Start_EmoteSad)
   wait(4)
-  DialogBoxNoPause(var2, "Emote positive")
-  WaitForDialog(var2)
-  AnimEvent(var2, EVENT_Start_EmoteHappy)
+  DialogBoxNoPause(param2, "Emote positive")
+  WaitForDialog(param2)
+  AnimEvent(param2, EVENT_Start_EmoteHappy)
   wait(4)
-  DialogBoxNoPause(var2, "Emote extra positive")
-  WaitForDialog(var2)
-  AnimEvent(var2, EVENT_Start_EmoteVeryHappy)
+  DialogBoxNoPause(param2, "Emote extra positive")
+  WaitForDialog(param2)
+  AnimEvent(param2, EVENT_Start_EmoteVeryHappy)
   wait(4)
   testCharMood = testCharMood + 1
   if testCharMood == 3 then
@@ -274,28 +274,28 @@ level_data = {
   }
 }
 
-function TestEvent(var1)
-  Print("Event fired." .. var1)
+function TestEvent(param1)
+  Print("Event fired." .. param1)
 end
 
-function LoadNIF(var1)
-  LoadNIFImpl(var1)
+function LoadNIF(param1)
+  LoadNIFImpl(param1)
 end
 
-function UnloadNIF(var1)
-  UnloadNIFImpl(var1)
+function UnloadNIF(param1)
+  UnloadNIFImpl(param1)
 end
 
-function LoadLevel(var1, var2)
-  TransitionToLevel(tostring(var2))
+function LoadLevel(param1, param2)
+  TransitionToLevel(tostring(param2))
 end
 
-function StreamZones(var1, var2) 
-  StreamPart(tostring(var2))
+function StreamZones(param1, param2) 
+  StreamPart(tostring(param2))
 end
 
-function StreamInterior(var1, var2)
-  StreamInteriorZone(tostring(var2))
+function StreamInterior(param1, param2)
+  StreamInteriorZone(tostring(param2))
 end
 
 function RestartLevel()
@@ -306,30 +306,30 @@ function WaitForLevelLoad()
   WaitForLevelToLoad()
 end
 
-function SetPlayerSpawnTransformSelf(var1)
-  SetPlayerSpawnTransformEntity(var1)
+function SetPlayerSpawnTransformSelf(param1)
+  SetPlayerSpawnTransformEntity(param1)
 end
 
-function SaveCheckpointNoPosition(var1, var2)
-  local invar1
-  invar1 = var2
-  if invar1 == nil then
-    invar1 = ""
+function SaveCheckpointNoPosition(param1, param2)
+  local var1
+  var1 = param2
+  if var1 == nil then
+    var1 = ""
   end
-  SaveGameToMemory(invar1, false)
+  SaveGameToMemory(var1, false)
 end
 
-function SaveCheckpoint(var1, var2, var3)
-  local invar1, invar2
-  invar2 = var3
-  if invar1 == nil then
-    invar1 = ""
+function SaveCheckpoint(param1, param2, param3)
+  local var1, var2
+  var2 = param3
+  if var1 == nil then
+    var1 = ""
   end
-  invar2 = var2
-  if invar2 == nil then
-    invar2 = ""
+  var2 = param2
+  if var2 == nil then
+    var2 = ""
   end
-  SaveGameToMemory(invar2, true, invar1)
+  SaveGameToMemory(var2, true, var1)
 end
 
 function SaveCheckpointSelf(A0_65, A1_66)

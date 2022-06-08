@@ -1,31 +1,28 @@
-local L0_0, L1_1
-L0_0 = 0
-CAMERA_INSTANT_TRANSITION = L0_0
-L0_0 = 1
-CAMERA_LERP_TRANSITION = L0_0
-L0_0 = 2
-CAMERA_SAMEPLACE_TRANSITION = L0_0
-L0_0 = 3
-CAMERA_EASING_TRANSITION = L0_0
-function L0_0(A0_2, A1_3)
+-- Fully reworked
+
+CAMERA_INSTANT_TRANSITION = 0
+CAMERA_LERP_TRANSITION = 1
+CAMERA_SAMEPLACE_TRANSITION = 2
+CAMERA_EASING_TRANSITION = 3
+
+function StartCDC(param1, param2)
   RestrictCutSceneInput()
-  GrabCamera(A0_2, A1_3, CAMERA_LERP_TRANSITION, 0.5)
-  Enable(A0_2)
-  Enable(A1_3)
+  GrabCamera(param1, param2, CAMERA_LERP_TRANSITION, 0.5)
+  Enable(param1)
+  Enable(param2)
 end
-StartCDC = L0_0
-function L0_0(A0_4, A1_5)
+
+function GrabCam2(param1, param2)
   wait(3)
-  GrabCamera(A0_4, A1_5, CAMERA_INSTANT_TRANSITION, 0.5)
-  Enable(A0_4)
+  GrabCamera(param1, param2, CAMERA_INSTANT_TRANSITION, 0.5)
+  Enable(param1)
   wait(1)
-  AnimEvent(A1_5, EVENT_Start_Jump)
+  AnimEvent(param2, EVENT_Start_Jump)
   wait(2)
   EndCDC()
 end
-GrabCam2 = L0_0
-function L0_0()
+
+function EndCDC()
   UnrestrictCutSceneInput()
   ReleaseCamera(CAMERA_LERP_TRANSITION, 0.5)
 end
-EndCDC = L0_0

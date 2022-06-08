@@ -23,51 +23,51 @@ Demo_streamGroups = {
   {Demo_Library, Demo_Tutorial}
 }
 
-function Demo_StreamZones(var1, var2)
-  local invar1, invar2
-  invar2 = tonumber(var2)
-  invar1 = Demo_streamGroups[invar2]
-  invar2 = ""
-  for _FORV_7_ = 1, #invar1 do
-    invar2 = invar2 .. invar1[_FORV_7_] .. ","
+function Demo_StreamZones(param1, param2)
+  local var1, var2
+  var2 = tonumber(param2)
+  var1 = Demo_streamGroups[var2]
+  var2 = ""
+  for _FORV_7_ = 1, #var1 do
+    var2 = var2 .. var1[_FORV_7_] .. ","
   end
-  StreamZones(var1, invar2)
+  StreamZones(param1, var2)
 end
 
 function Demo_ThinnerFall()
-  local invar1, invar2
+  local var1, var2
 end
 
-function Demo_EnterGeefTunnelLeft(var1)
+function Demo_EnterGeefTunnelLeft(param1)
   if GetGlobal("Demo_PlayerInTunnel") == 0 then
-    GrabCamera(var1, nil, CAMERA_LERP_TRANSITION, 0.7)
+    GrabCamera(param1, nil, CAMERA_LERP_TRANSITION, 0.7)
   end
 end
 
-function Demo_EnterGeefTunnelRight(var1)
+function Demo_EnterGeefTunnelRight(param1)
   if GetGlobal("Demo_PlayerInTunnel") == 0 then
-    GrabCamera(var1, nil, CAMERA_LERP_TRANSITION, 1)
+    GrabCamera(param1, nil, CAMERA_LERP_TRANSITION, 1)
     wait(0.7)
     ReleaseCamera(CAMERA_LERP_TRANSITION, 1)
   end
 end
 
-function Demo_ExitGeefTunnelLeft(var1)
+function Demo_ExitGeefTunnelLeft(param1)
   if GetGlobal("Demo_PlayerInTunnel") == 1 then
-    GrabCamera(var1, nil, CAMERA_LERP_TRANSITION, 1)
+    GrabCamera(param1, nil, CAMERA_LERP_TRANSITION, 1)
   end
 end
 
-function Demo_OnBalcony(var1, var2)
-  GrabCamera(var1, var2, CAMERA_LERP_TRANSITION, 1.5)
+function Demo_OnBalcony(param1, param2)
+  GrabCamera(param1, param2, CAMERA_LERP_TRANSITION, 1.5)
 end
 
-function Demo_InstantCam(var1, var2)
-  GrabCamera(var1, var2, CAMERA_LERP_TRANSITION, 0)
+function Demo_InstantCam(param1, param2)
+  GrabCamera(param1, param2, CAMERA_LERP_TRANSITION, 0)
 end
 
-function Demo_GrabCam(var1, var2)
-  GrabCamera(var1, nil, CAMERA_LERP_TRANSITION, var2)
+function Demo_GrabCam(param1, param2)
+  GrabCamera(param1, nil, CAMERA_LERP_TRANSITION, param2)
 end
 
 function Demo_OffBalcony()
@@ -84,14 +84,14 @@ end
 
 DemoLabBooksCaught = 0
 
-function DemoLab_CatchBook(var1)
+function DemoLab_CatchBook(param1)
   DemoLabBooksCaught = DemoLabBooksCaught + 1
   if DemoLabBooksCaught == 2 then
     DialogBox(GetPlayer(), "The Scrapper is aligned with the destructive force of Thinner. He is powerful and dangerous- a product of directness and the pursuit of bettering himself at all turns.  He realizes that his needs are paramount and as such accumulates power quickly. His mastery of Thinner and thus destruction is unparalleled.")
   elseif DemoLabBooksCaught == 1 then
     DialogBox(GetPlayer(), "The Hero is influenced by the creative force of Paint. He is a builder and restorer and as such he draws allies to him that aid in his journey.  In his striving to improve and uplift the world around him he also uplifts himself through acts of nobility and sacrifice.")
   end
-  DestroyEntity(var1)
+  DestroyEntity(param1)
 end
 
 function DemoLab_ColumnFall()
@@ -340,7 +340,7 @@ function DemoLab_TedSpeak()
 end
 
 function Demo_TedFixesRobotArm()
-  local invar1
+  local var1
   RestrictCutSceneInput()
   SplineFollower_SetDisabled("dun_zonea_scripting_ai.Gremlin_Ted 01", true)
   GrabCameraNif("dun_zonea_scripting_ai.RobotArmGremlin_Camera_IGC 01", nil, 0, 0)
@@ -354,8 +354,8 @@ function Demo_TedFixesRobotArm()
   AnimEvent("dun_zonea_scripting_ai.Gremlin_Ted 01", EVENT_Start_Cutscene)
   RelayTrigger("dun_zonea_scripting_ai.RobotArmLogicRelayMarker 01")
   wait(5)
-  invar1 = GetChildEntityByName("dun_zonea_scripting_ai.Gremlin_Ted 01", "GremlinWrench")
-  Unhide(invar1)
+  var1 = GetChildEntityByName("dun_zonea_scripting_ai.Gremlin_Ted 01", "GremlinWrench")
+  Unhide(var1)
   wait(4)
   wait(4.7)
   Bark(GetPlayer(), "Now you can cross this arm to get to the ledge! Gotta fly - there's a battle shaping up! Goodbye!", 5, "GremlinGreen", "Jamface:")
@@ -550,7 +550,7 @@ function DemoLab_UseMirror()
 end
 
 function Demo_ClockJams()
-  local invar1, invar2
+  local var1, var2
 end
 
 function Demo_2DObject01()

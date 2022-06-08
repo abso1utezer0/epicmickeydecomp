@@ -1,4 +1,4 @@
--- Fully reworked
+-- this needs to be completely redone from scratch, it was my first attempt at a file and i didnt know what i was doing
 
 function MirrorEnterProjector(num1, num2)
   local tTMNum1, tTMNum2, tTMNum3, tTMVar1

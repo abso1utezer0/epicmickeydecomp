@@ -90,19 +90,19 @@ function TL_Pump3()
   SplineFollower_StopAtPosition("TL_Crusher3", "TL_WeightBottomKnot3", "TL_WeightTopKnot3", 1 - GetGlobal("TL_Pump3_Value"))
 end
 
-function Electric_HazardZap_ConstantZoneE1(var1)
-  local invar1
-  for invar1 = 1, 1 do
-    Hide(var1)
+function Electric_HazardZap_ConstantZoneE1(param1)
+  local var1
+  for var1 = 1, 1 do
+    Hide(param1)
     wait(0.5)
-    Unhide(var1)
+    Unhide(param1)
     wait(0.5)
   end
 end
 
-function Electric_HazardZap_ConstantZoneE2(var1)
-  local invar1
-  for invar1 = 1, 1 do
+function Electric_HazardZap_ConstantZoneE2(param1)
+  local var1
+  for var1 = 1, 1 do
     Hide("tl_minihub_zonee.TL_Minihub_ZoneE_TEMP_electricarc 05")
     Hide("tl_minihub_zonee.TL_Minihub_ZoneE_TEMP_electricarc 06")
     Hide("tl_minihub_zonee.TL_Minihub_ZoneE_TEMP_electricarc 07")
@@ -114,22 +114,22 @@ function Electric_HazardZap_ConstantZoneE2(var1)
   end
 end
 
-function Electric_HazardZap_ConstantZoneE3(var1)
-  local invar1
-  for invar1 = 1, 1 do
-    Hide(var1)
+function Electric_HazardZap_ConstantZoneE3(param1)
+  local var1
+  for var1 = 1, 1 do
+    Hide(param1)
     wait(0.8)
-    Unhide(var1)
+    Unhide(param1)
     wait(0.2)
   end
 end
 
-function Electric_HazardZap_ConstantZoneE4(var1)
-  local invar1
-  for invar1 = 1, 1 do
-    Hide(var1)
+function Electric_HazardZap_ConstantZoneE4(param1)
+  local var1
+  for var1 = 1, 1 do
+    Hide(param1)
     wait(0.5)
-    Unhide(var1)
+    Unhide(param1)
     wait(0.5)
   end
 end

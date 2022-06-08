@@ -1,18 +1,18 @@
 -- Fully reworked
 
-function TurnIntoBunnyBall(var1, var2)
-  if DeathEvent_DeathType(var2) == 6 then
+function TurnIntoBunnyBall(param1, param2)
+  if DeathEvent_DeathType(param2) == 6 then
     return
   end
-  if IsValidHandle(var1) then
-    ForceSpawn(var1, 1)
+  if IsValidHandle(param1) then
+    ForceSpawn(param1, 1)
   end
 end
 
-function TurnIntoBunny(var1)
-  if IsValidHandle(var1) then
-    ForceSpawn(var1, 1)
-    DestroyEntity(var1)
+function TurnIntoBunny(param1)
+  if IsValidHandle(param1) then
+    ForceSpawn(param1, 1)
+    DestroyEntity(param1)
   end
 end
 
@@ -22,7 +22,7 @@ function FirstTimeBunnyAttach()
   end
 end
 
-function BunnyChildThinnerImmunity(var1)
+function BunnyChildThinnerImmunity(param1)
   Wait(0.033)
-  DestroyEntity(var1)
+  DestroyEntity(param1)
 end

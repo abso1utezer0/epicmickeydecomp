@@ -1,41 +1,39 @@
 -- Fully reworked
 
-local L0_0, L1_1
-
-function Spatter_Kamikaze_Explode(var1)
-  local invar1
-  invar1 = GetPropertyEntity(var1, "Parent Entity")
-  DialogBox(GetPlayer(), invar1)
-  KnockbackExplode_Default(invar1)
+function Spatter_Kamikaze_Explode(param1)
+  local var1
+  var1 = GetPropertyEntity(param1, "Parent Entity")
+  DialogBox(GetPlayer(), var1)
+  KnockbackExplode_Default(var1)
   Damage(GetPlayer(), 1)
   wait(0.2)
-  Kill(invar1)
+  Kill(var1)
   wait(0.1)
-  DestroyEntity(var1)
+  DestroyEntity(param1)
 end
 
-function Spladoosh_Play_Spin_React(var1, var2)
-  if StimulusEvent_HasStimulusType(var2, ST_SPIN) then
-    AudioPostEventOn(var1, "Play_sfx_BltKmk_mvmt_HitReact")
+function Spladoosh_Play_Spin_React(param1, param2)
+  if StimulusEvent_HasStimulusType(param2, ST_SPIN) then
+    AudioPostEventOn(param1, "Play_sfx_BltKmk_mvmt_HitReact")
   end
 end
 
-function Spatter_SetReward(var1)
+function Spatter_SetReward(param1)
   if GetHeroPercent(GetPlayer()) > 0.33 then
-    SetPropertyInt(var1, "RewardSpawnIndex", 1, 0)
+    SetPropertyInt(param1, "RewardSpawnIndex", 1, 0)
   elseif GetScrapperPercent(GetPlayer()) > 0.33 then
-    SetPropertyInt(var1, "RewardSpawnIndex", 2, 0)
+    SetPropertyInt(param1, "RewardSpawnIndex", 2, 0)
   else
-    SetPropertyInt(var1, "RewardSpawnIndex", 0, 0)
+    SetPropertyInt(param1, "RewardSpawnIndex", 0, 0)
   end
 end
 
-function SpatterRanged_SetReward(var1)
+function SpatterRanged_SetReward(param1)
   wait(0.1)
   if math.random(1, 100) > 66 then
-    SetPropertyInt(var1, "RewardSpawnIndex", 1, 0)
+    SetPropertyInt(param1, "RewardSpawnIndex", 1, 0)
   else
-    SetPropertyInt(var1, "RewardSpawnIndex", 2, 0)
+    SetPropertyInt(param1, "RewardSpawnIndex", 2, 0)
   end
 end
 
@@ -50,9 +48,9 @@ function SpatterOceanDeath_RemoveRewards()
   SetPropertyString(_self(), "Templates To Spawn", "", 0)
 end
 
-function SweeperLowerProjectileSplash(var1)
-  local invar1
-  invar1 = GetPosition(var1)
-  invar1 = invar1 + vector4(0, -1.1, 0)
-  SetTransformation(var1, invar1, vector4(0, 0, 0))
+function SweeperLowerProjectileSplash(param1)
+  local var1
+  var1 = GetPosition(param1)
+  var1 = var1 + vector4(0, -1.1, 0)
+  SetTransformation(param1, var1, vector4(0, 0, 0))
 end

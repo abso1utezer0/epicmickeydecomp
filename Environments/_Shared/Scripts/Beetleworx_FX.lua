@@ -1,25 +1,25 @@
 -- Fully reworked
 
-function BeetleworxFodderStartSlowFX(emitterName)
-  StartEmitterByName(emitterName, "BeetleworxFodder_StatusSlow_FX")
+function BeetleworxFodderStartSlowFX(param1)
+  StartEmitterByName(param1, "BeetleworxFodder_StatusSlow_FX")
 end
 
-function BeetleworxFodderEndSlowFX(emitterName)
-  StopEmitterByName(emitterName, "BeetleworxFodder_StatusSlow_FX")
+function BeetleworxFodderEndSlowFX(param1)
+  StopEmitterByName(param1, "BeetleworxFodder_StatusSlow_FX")
 end
 
-function BeetleworxCannonStartSlowFX(emitterName)
-  StartEmitterByName(emitterName, "BeetleworxCannon_StatusSlow_FX")
+function BeetleworxCannonStartSlowFX(param1)
+  StartEmitterByName(param1, "BeetleworxCannon_StatusSlow_FX")
 end
 
-function BeetleworxCannonEndSlowFX(emitterName)
-  StopEmitterByName(emitterName, "BeetleworxCannon_StatusSlow_FX")
+function BeetleworxCannonEndSlowFX(param1)
+  StopEmitterByName(param1, "BeetleworxCannon_StatusSlow_FX")
 end
 
-function AnimatronicPirateMeleeStartSlowFX(emitterName)
-  StartEmitterByName(emitterName, "AnimatronicPirateMelee_StatusSlow_FX")
+function AnimatronicPirateMeleeStartSlowFX(param1)
+  StartEmitterByName(param1, "AnimatronicPirateMelee_StatusSlow_FX")
 end
 
-function AnimatronicPirateMeleeEndSlowFX(emitterName)
-  StopEmitterByName(emitterName, "AnimatronicPirateMelee_StatusSlow_FX")
+function AnimatronicPirateMeleeEndSlowFX(param1)
+  StopEmitterByName(param1, "AnimatronicPirateMelee_StatusSlow_FX")
 end
