@@ -1,3 +1,4 @@
+-- this file is hell and is never read by the engine so i'm going to leave it as is
 
 if BuildConfig() ~= "FINAL" then
   Print(BuildConfig(), "Strict.lua will run.")

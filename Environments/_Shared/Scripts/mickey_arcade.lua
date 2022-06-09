@@ -1,9 +1,10 @@
-local L0_0, L1_1
-function L0_0()
+
+
+function MA_Title_Start()
   GrabCamera("arcade_title.StartCamera 01", nil, CAMERA_LERP_TRANSITION, 0)
 end
-MA_Title_Start = L0_0
-function L0_0()
+
+function MA_Title_Exit()
   MA_BreakTitleM()
   wait(1.1)
   DestroyEntity("arcade_title.DynmicINT_3x3_A 01")
@@ -11,15 +12,15 @@ function L0_0()
   wait(2)
   ReleaseCamera(CAMERA_LERP_TRANSITION, 2)
 end
-MA_Title_Exit = L0_0
-L0_0 = 0
-MA_Points = L0_0
-function L0_0(A0_2, A1_3)
-  MA_Points = MA_Points + A1_3
+
+MA_Points = 0
+
+function MA_ScorePoints(param1, param2)
+  MA_Points = MA_Points + param2
   Display(GetPlayer(), " " .. MA_Points .. " pts.", 1.5)
 end
-MA_ScorePoints = L0_0
-function L0_0()
+
+function MA_BreakTitleM()
   ClearParent("arcade_title.DynmicINT_1x1_A 02")
   ClearParent("arcade_title.DynmicINT_1x1_A 16")
   ClearParent("arcade_title.DynmicINT_1x1_A 03")
@@ -65,8 +66,8 @@ function L0_0()
   wait(0.1)
   EnableMotion("arcade_title.DynmicINT_1x1_A 09")
 end
-MA_BreakTitleM = L0_0
-function L0_0()
+
+function MA_Button01()
   RestrictCutSceneInput()
   wait(0.5)
   GrabCamera("mickey_arcade_01_a.WallTransformCamera 01", nil, CAMERA_LERP_TRANSITION, 2.1)
@@ -75,22 +76,22 @@ function L0_0()
   ReleaseCamera(CAMERA_LERP_TRANSITION, 2)
   UnrestrictCutSceneInput()
 end
-MA_Button01 = L0_0
-function L0_0(A0_4, A1_5)
-  GrabCamera(A0_4, nil, CAMERA_LERP_TRANSITION, A1_5)
+
+function MA_GrabCam(param1, param2)
+  GrabCamera(param1, nil, CAMERA_LERP_TRANSITION, param2)
 end
-MA_GrabCam = L0_0
-L0_0 = 1
-MA_CrusherField01On = L0_0
-function L0_0(A0_6, A1_7)
-  if GetGlobal(A1_7) == 1 then
-    SetGlobal(A1_7, 0)
-  elseif GetGlobal(A1_7) == 0 then
-    SetGlobal(A1_7, 1)
+
+MA_CrusherField01On = 1
+
+function MA_SetCrusherField(param1, param2)
+  if GetGlobal(param2) == 1 then
+    SetGlobal(param2, 0)
+  elseif GetGlobal(param2) == 0 then
+    SetGlobal(param2, 1)
   end
 end
-MA_SetCrusherField = L0_0
-function L0_0()
+
+function MA_CrusherField01()
   if MA_CrusherField01On == 1 then
     if GetGlobal("MA_CrusherStation01") == 0 then
       ForceSpawn("mickey_arcade_01_a.CrusherSpawner 01", 1)
@@ -120,4 +121,3 @@ function L0_0()
     RelayTrigger("mickey_arcade_01_a.CrusherFieldRelay 01")
   end
 end
-MA_CrusherField01 = L0_0

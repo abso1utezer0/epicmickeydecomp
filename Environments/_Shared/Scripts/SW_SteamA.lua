@@ -1,13 +1,13 @@
 -- Fully reworked
 
 function SW_SteamA_ToGVZoneF()
-  local invar1, invar2
+  local var1, var2
 end
 
-function Setup_SBW_ForE3(var1)
+function Setup_SBW_ForE3(param1)
   if GetConfigVariableBool("DemoLevelCheck") == true then
-    GetPrefabData(var1).MapLoad_SetupPosition = "True"
-    SetupProjector(var1)
+    GetPrefabData(param1).MapLoad_SetupPosition = "True"
+    SetupProjector(param1)
   end
 end
 

@@ -1,7 +1,5 @@
 -- Fully reworked
 
--- this file is pure unfiltered hell
-
 MickeyInHut = 0
 HutLocMarker = ""
 demo_gv_isle1_Spatterspawner1 = 1
@@ -681,15 +679,10 @@ function demo_gv_donaldarm()
   SetGlobal("demo_gv_isle1_donaldarm", GetGlobal("demo_gv_isle1_donaldarm") + 1)
 end
 
--- this function takes up 200 lines of code for like 20 dialog lines.
---
--- whoever wrote this yandev level else if statement should not be allowed to program ever again.
-
 function demo_gv_SugQuest(var1, var2)
 
-  local invar1, invar2
-  invar2 = "demo_gv_SetSugPart"
-  invar1 = GetGlobal(invar2)
+  local invar1
+  invar1 = GetGlobal("demo_gv_SetSugPart")
 
   if invar1 == 1 then
 

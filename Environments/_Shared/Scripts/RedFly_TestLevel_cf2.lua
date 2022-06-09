@@ -55,7 +55,7 @@ function LaunchGreeting(param1)
   WaitForDialog(param1)
 end
 
-function L0_0(A0_3)
+function HintsAlongTheWay(param1)
   wait(120)
   if isBridge1Down == false then
     if GetPropertyBool("BridgeGear1", "Is Painted") == true then
@@ -75,43 +75,43 @@ function L0_0(A0_3)
     Bark(GetPlayer(), "You can always head up the junk mountain and help me!", 5, "Oswald", "Oswald")
   end
 end
-HintsAlongTheWay = L0_0
-function L0_0(A0_4, A1_5)
-  if isJITBSprung == false and GetPropertyBool(A0_4, "Is Painted") then
+
+function ActivateJackInTheBox(param1, param2)
+  if isJITBSprung == false and GetPropertyBool(param1, "Is Painted") then
     isJITBSprung = true
-    AnimGBSequence(A0_4, "open")
-    AnimEvent(A1_5, EVENT_Special_0)
+    AnimGBSequence(param1, "open")
+    AnimEvent(param2, EVENT_Special_0)
     LaunchEntity(GetPlayer(), 0, 4000, 0)
     wait(1.5)
-    AnimGBSequence(A0_4, "close")
-    AnimEvent(A1_5, EVENT_Special_1)
+    AnimGBSequence(param1, "close")
+    AnimEvent(param2, EVENT_Special_1)
     wait(0.5)
     isJITBSprung = false
   end
 end
-ActivateJackInTheBox = L0_0
-function L0_0(A0_6, A1_7)
-  if A1_7 == "true" then
-    Enable(A0_6)
+
+function MovieRealSpin(param1, param2)
+  if param2 == "true" then
+    Enable(param1)
   else
-    Disable(A0_6)
+    Disable(param1)
   end
 end
-MovieRealSpin = L0_0
-function L0_0(A0_8, A1_9, A2_10)
-  A2_10 = tonumber(A2_10)
+
+function CSLookAtEntity(param1, param2, param3)
+  param3 = tonumber(param3)
   RestrictCutSceneInput()
   AI_SetDisabled("ShadowBlot", true)
   ForEachEntityInGroup(AI_SetDisabled, "Spatters", true)
-  if A2_10 == nil or A2_10 == 0 then
-    GrabCamera(A0_8, A1_9, CAMERA_INSTANT_TRANSITION, 0)
+  if param3 == nil or param3 == 0 then
+    GrabCamera(param1, param2, CAMERA_INSTANT_TRANSITION, 0)
   else
-    GrabCamera(A0_8, A1_9, CAMERA_LERP_TRANSITION, A2_10)
+    GrabCamera(param1, param2, CAMERA_LERP_TRANSITION, param3)
   end
-  Enable(A0_8)
+  Enable(param1)
 end
-CSLookAtEntity = L0_0
-function L0_0()
+
+function CSEndLookAtEntity()
   UnrestrictCutSceneInput()
   if isBlotDead == false then
     AI_SetDisabled("ShadowBlot", false)
@@ -119,22 +119,22 @@ function L0_0()
   ForEachEntityInGroup(AI_SetDisabled, "Spatters", false)
   ReleaseCamera(CAMERA_LERP_TRANSITION, 0.5)
 end
-CSEndLookAtEntity = L0_0
-function L0_0(A0_11, A1_12, A2_13)
-  if A0_11 == 0 then
+
+function ResetCamera(param1, param2, param3)
+  if param1 == 0 then
     ReleaseCamera(CAMERA_INSTANT_TRANSITION, 0)
   else
-    ReleaseCamera(CAMERA_LERP_TRANSITION, A0_11)
+    ReleaseCamera(CAMERA_LERP_TRANSITION, param1)
   end
-  if A1_12 == true then
+  if param2 == true then
     SetCameraHintPitch(GetPlayer(), 0)
   end
-  if A2_13 ~= nil then
-    SetSecondaryCameraTarget(A2_13)
+  if param3 ~= nil then
+    SetSecondaryCameraTarget(param3)
   end
 end
-ResetCamera = L0_0
-function L0_0(A0_14)
+
+function DeactivateTriggers(A0_14)
   Disable("Thinner1Trigger")
   Disable("Thinner2Trigger")
   Disable("Thinner2JunkTrigger")
@@ -154,7 +154,7 @@ function L0_0(A0_14)
   Disable("Inert4Trigger")
   Disable("Inert5Trigger")
 end
-DeactivateTriggers = L0_0
+
 function L0_0(A0_15)
   if isThinner1Broken == false then
     Enable("Thinner1Trigger")

@@ -1,53 +1,44 @@
-local L0_0, L1_1
-L0_0 = ""
-InkWellLevelName = L0_0
-L0_0 = 0
-InkWellPosition = L0_0
-L0_0 = 0
-InkWellFacing = L0_0
-L0_0 = 0
-CurrentETickets = L0_0
-L0_0 = 0
-CurrentHealth = L0_0
-L0_0 = 0
-CurrentLives = L0_0
-L0_0 = 0
-CurrentPaint = L0_0
-L0_0 = 0
-CurrentThinner = L0_0
-function L0_0()
-  local L0_2
-  L0_2 = GetPlayer
-  L0_2 = L0_2()
-  CurrentPaint = GetPropertyFloat(L0_2, "Paint", 0)
-  CurrentThinner = GetPropertyFloat(L0_2, "Thinner", 0)
-  CurrentETickets = GetPropertyFloat(L0_2, "ETicket", 0)
-  CurrentHealth = GetPropertyInt(L0_2, "Health", 0)
-  CurrentLives = GetPropertyInt(L0_2, "Lives", 0)
+-- Fully reworked
+
+InkWellLevelName = ""
+InkWellPosition = 0
+InkWellFacing = 0
+CurrentETickets = 0
+CurrentHealth = 0
+CurrentLives = 0
+CurrentPaint = 0
+CurrentThinner = 0
+
+function SetCurrentInventory()
+  CurrentPaint = GetPropertyFloat(GetPlayer(), "Paint", 0)
+  CurrentThinner = GetPropertyFloat(GetPlayer(), "Thinner", 0)
+  CurrentETickets = GetPropertyFloat(GetPlayer(), "ETicket", 0)
+  CurrentHealth = GetPropertyInt(GetPlayer(), "Health", 0)
+  CurrentLives = GetPropertyInt(GetPlayer(), "Lives", 0)
 end
-SetCurrentInventory = L0_0
-function L0_0(A0_3, A1_4)
-  InkWellPosition = GetPosition(A0_3)
-  InkWellFacing = GetFacing(A0_3)
-  InkWellLevelName = A1_4
+
+function SetCurrentInkWell(param1, param2)
+  InkWellPosition = GetPosition(param1)
+  InkWellFacing = GetFacing(param1)
+  InkWellLevelName = param2
 end
-SetCurrentInkWell = L0_0
-function L0_0(A0_5, A1_6)
+
+function SaveInkWell(param1, param2)
   SetCurrentInventory()
-  SetCurrentInkWell(A0_5, A1_6)
+  SetCurrentInkWell(param1, param2)
 end
-SaveInkWell = L0_0
-function L0_0(A0_7)
+
+function RestoreToLastInkWell(param1)
   if InkWellLevelName == "" then
     Print("No InkWell saved")
   else
-    SetHealth(A0_7, CurrentHealth)
-    SetLives(A0_7, CurrentLives)
-    SetItemCount(A0_7, "ETicket", CurrentETickets)
-    SetItemCount(A0_7, "Thinner", CurrentThinner)
-    SetItemCount(A0_7, "Paint", CurrentPaint)
-    LoadLevel(A0_7, InkWellLevelName)
-    SetTransformation(A0_7, InkWellPosition, InkWellFacing)
+    SetHealth(param1, CurrentHealth)
+    SetLives(param1, CurrentLives)
+    SetItemCount(param1, "ETicket", CurrentETickets)
+    SetItemCount(param1, "Thinner", CurrentThinner)
+    SetItemCount(param1, "Paint", CurrentPaint)
+    LoadLevel(param1, InkWellLevelName)
+    SetTransformation(param1, InkWellPosition, InkWellFacing)
   end
   if GusThinnerRising == true then
     Reverse("S3_sw_ZoneZ_static_Scenario6_Thinner 01")
@@ -60,4 +51,3 @@ function L0_0(A0_7)
     Reverse("S3_sw_ZoneZ_static_Scenario6_Thinner 01")
   end
 end
-RestoreToLastInkWell = L0_0
