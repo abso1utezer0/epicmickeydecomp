@@ -1,7 +1,5 @@
 -- Fully reworked
 
-local L0_0
-
 Demo_Lab = "Environments/Dungeons/Zones/DUN_Master.gsa"
 Demo_Lab_Skybox = "Environments/Dungeons/Zones/DUN_ZoneA_Skybox.gsa"
 Demo_Tutorial = "Environments/Tutorial/TUT_Islands.gsa"
